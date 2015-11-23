@@ -32,7 +32,7 @@
                     </form>
                 </div>
                 <div class="mainTextContent login">
-                    Login/Register
+                    Login <br /><span class="small">Sign Up</span>
                 </div>
             </div>
             <div class="allContent">

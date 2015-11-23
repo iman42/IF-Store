@@ -25,16 +25,29 @@ h1.bannerText{
     margin-top: -100px;
     left:50%;
     margin-left:-150px;
-    background:black;
+    text-align:center;
     width:300px;
 }
 .mainTextContent{
     display:inline-block;
     float:left;
-    background:black;
+    text-align:center;
     height:50px;
     margin-top:12px;
     width:20%;
+}
+.submit{
+    font-size:30px;
+    margin-bottom:-12px;
+    margin-top:22px;
+}
+.login{
+    font-size:30px;
+    margin-top:12px;
+}
+.login > .small{
+    display:block;
+    font-size:14px;
 }
 .search{
     background:#EEEEEE;
@@ -70,7 +83,7 @@ h1.bannerText{
 }
 .search-box{
     height:100%;
-    font-size:2em;
+    font-size:30px;
     border:2px solid purple;
     width:calc(100% - 60px);
     padding-left:10px;
@@ -96,15 +109,18 @@ h1.bannerText{
     margin: auto;
     margin-top: 10px;
     z-index: 999;
-    margin-left: -20px;
+    margin-left:-40px;
+    border: 4px solid purple;
     position: relative;
+    padding:20px;
 }
 @media(max-width: 600px){
     .contentBox{
         width:100%;
     }
     #search-suggestions{
-        width:calc(100% + 20px);
+        width:calc(100% - 48px);
+        margin-left:0;
     }
     .mainTextContent{
         width:100%;
