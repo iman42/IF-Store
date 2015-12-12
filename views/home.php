@@ -32,24 +32,24 @@
                     </form>
                 </div>
                 <div class="mainTextContent login">
-                    Login <br /><span class="small">Sign Up</span>
+                    Login <span class = "ifBig">/</span> <span class="small">Sign Up</span>
                 </div>
             </div>
             <div class="allContent">
                 <div class="contentBox">
-                    <div class="contentTitle"></div>
+                    <div class="contentTitle">F<br>e<br>a<br>t<br>u<br>r<br>e<br>d</div>
                     <div class="contentBoxContent"></div>
                 </div>
                 <div class="contentBox">
-                    <div class="contentTitle"></div>
+                    <div class="contentTitle">I<br>F<br><br>C<br>o<br>m<br>i<br>c<br>s</div>
                     <div class="contentBoxContent"></div>
                 </div>
                 <div class="contentBox">
-                    <div class="contentTitle"></div>
+                    <div class="contentTitle">T<br>o<br>p<br><br>S<br>h<br>e<br>l<br>f</div>
                     <div class="contentBoxContent"></div>
                 </div>
                 <div class="contentBox">
-                    <div class="contentTitle"></div>
+                    <div class="contentTitle"><br>P<br>o<br>p<br>u<br>l<br>a<br>r</div>
                     <div class="contentBoxContent"></div>
                 </div>
             </div>

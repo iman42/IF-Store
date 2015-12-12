@@ -46,8 +46,8 @@ h1.bannerText{
     margin-top:12px;
 }
 .login > .small{
-    display:block;
-    font-size:14px;
+    display:inline;
+    font-size:30px;
 }
 .search{
     background:#EEEEEE;
@@ -58,11 +58,13 @@ h1.bannerText{
   width:100%;
   max-width:1200px;
   margin:auto;
+  background: #663399;
 }
 .contentBox{
   width:50%;
   height:200px;
   float:left;
+
 }
 .allContent{
     width:100%;
@@ -72,14 +74,18 @@ h1.bannerText{
 .contentTitle{
     float:left;
     height:100%;
-    background:#DDDDDD;
+    background:#111111;
     width:40px;
+    text-align: center;
+    font-size: 17px;
+    color: #663399;
+    font-weight: bold;
 }
 .contentBoxContent{
     height:calc(100% - 10px);
     width:100%;
-    border-bottom:10px solid white;
-    background:#CCCCCC;
+    border-bottom:10px solid #111111;
+    background:#000000;
 }
 .search-box{
     height:100%;
@@ -114,7 +120,23 @@ h1.bannerText{
     position: relative;
     padding:20px;
 }
+@media(max-width: 1000px){
+    .login > .ifBig{
+        display: none;
+    }
+    .login > .small{
+    display: block;
+    font-size:14px;
+}
+}
 @media(max-width: 600px){
+    .login > .ifBig{
+        display: inline;
+    }
+    .login > .small{
+    display: inline;
+    font-size:30px;
+}
     .contentBox{
         width:100%;
     }
@@ -128,4 +150,5 @@ h1.bannerText{
     .mainText{
         height:195px;
     }
+
 }
