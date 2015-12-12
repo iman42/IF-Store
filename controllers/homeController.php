@@ -1,5 +1,7 @@
 <?php
-    $defaultSearchSuggestions[0] = "Code to calculate default suggestions not complete.";
+include('../config.php');
 
-    include('../views/home.php');
+$defaultSearchSuggestions[0] = "Code to calculate default suggestions not complete.";
+
+include('../views/home.php');
 ?>

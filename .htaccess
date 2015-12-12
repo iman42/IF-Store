@@ -8,3 +8,4 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 # domain.com/blahblah -> domain.com/blahblah/
 RewriteRule ^(([a-z0-9\-]+/)*[a-z0-9\-]+)$ $1/ [NC,R=301,L]
 RewriteRule ^\/?$ controllers/homeController.php [NC]
+RewriteRule ^login/$ controllers/loginController.php [NC]
