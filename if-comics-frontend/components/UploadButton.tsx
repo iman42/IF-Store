@@ -1,4 +1,4 @@
-import styles from './UploadButton.module.css';
+import styles from "./UploadButton.module.css";
 
 const UploadButton = () => (
     <div className={styles.grid}>
