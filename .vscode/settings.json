@@ -1,3 +1,8 @@
 {
-    "eslint.workingDirectories": ["if-comics-frontend"]
+    "eslint.workingDirectories": [ "if-comics-frontend" ],
+    "jestrunner.configPath": "if-comics-frontend/jest.config.js",
+    "jestrunner.jestCommand": "cd if-comics-frontend ; node_modules/.bin/jest",
+    "npm.useRootDirectory": false,
+    "npm.includeDirectories": [ "if-comics-frontend" ],
+    "eslint.codeActionsOnSave.mode": "all"
 }

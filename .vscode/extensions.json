@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        // for if-comics-frontend
+        "dbaeumer.vscode-eslint", // automatic linter
+        "firsttris.vscode-jest-runner", // to run tests
+        "eg2.vscode-npm-script", // to provide suggestions when editing package.json
+        "christian-kohler.npm-intellisense" // to provide suggestions based on package.json
+    ],
+    "unwantedRecommendations": [ ]
+}
