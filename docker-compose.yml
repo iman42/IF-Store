@@ -2,7 +2,7 @@ version: '3.9'
 
 
 services:
-  if-comics-frontend: 
-    build: './if-comics-frontend/.'
+  frontend: 
+    build: './frontend/.'
     ports:
       - 3000:3000

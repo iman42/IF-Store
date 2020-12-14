@@ -1,6 +1,6 @@
 {
     "recommendations": [
-        // for if-comics-frontend
+        // for frontend
         "dbaeumer.vscode-eslint", // automatic linter
         "firsttris.vscode-jest-runner", // to run tests
         "eg2.vscode-npm-script", // to provide suggestions when editing package.json
