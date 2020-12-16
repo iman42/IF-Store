@@ -8,7 +8,6 @@
         
         // Java stuff
         "redhat.java", // support for java language (go-to-definition, etc)
-        "fwcd.kotlin", // support for kotlin language
         "vscjava.vscode-maven", // to run maven tasks
         "richardwillis.vscode-gradle", // to run gradle tasks
         "vscjava.vscode-java-test", // to run tests
