@@ -1,10 +1,10 @@
-package com.ifstore.web.driver;
+package com.ifstore.web.comic_store;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DriverApplicationTests {
+class ComicStoreApplicationTests {
 
 	@Test
 	void contextLoads() {

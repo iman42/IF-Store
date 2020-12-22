@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ifstore.web</groupId>
-	<artifactId>driver</artifactId>
+	<artifactId>comic_store</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>driver</name>
-	<description>Demo project for Spring Boot</description>
+	<name>comic_store</name>
+	<description></description>
 
 	<properties>
 		<java.version>11</java.version>

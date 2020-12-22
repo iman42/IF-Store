@@ -1,4 +1,4 @@
-package com.ifstore.web.driver;
+package com.ifstore.web.comic_store;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-public class DriverApplication {
+public class ComicStoreApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DriverApplication.class, args);
+		SpringApplication.run(ComicStoreApplication.class, args);
 	}
 
 	@GetMapping("/hello")
