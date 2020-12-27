@@ -1,30 +1,32 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## To Run
 
-First, run the development server:
+To run in development-mode, execute the [npm script](https://docs.npmjs.com/cli/v6/using-npm/scripts) "dev":
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The results are served at [http://localhost:3000](http://localhost:3000) and "hot-reloading" is enabled (meaning, with certain limitations, changes made to source code can be seen without needing to quit and re-run).
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## To Run Tests
 
-## Learn More
+```bash
+npm ci
+npm test
+```
 
-To learn more about Next.js, take a look at the following resources:
+## To Build and Deploy
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm ci
+npm run build
+npm start
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+See details [here](https://nextjs.org/docs/deployment#nodejs-server).
+- _"`next build` builds the production application in the .next folder. After building, `next start` starts a Node.js server"_
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Code Organization
