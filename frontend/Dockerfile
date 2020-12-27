@@ -11,12 +11,12 @@ COPY package-lock.json /app
 
 RUN npm ci
 
-COPY . /app
-RUN npm run build
-
 ENV PORT 3000
 EXPOSE 3000
 ENV NODE_ENV production
+
+COPY . /app
+RUN npm run build
 
 USER nextjs
 
