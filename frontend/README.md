@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## To Run
 
-To run in development-mode, execute the [npm script](https://docs.npmjs.com/cli/v6/using-npm/scripts) "dev":
+To run in development-mode, execute the [npm script](https://docs.npmjs.com/cli/v6/using-npm/scripts) `dev`. Like this:
 
 ```bash
 npm ci
@@ -27,6 +27,6 @@ npm start
 ```
 
 See details [here](https://nextjs.org/docs/deployment#nodejs-server).
-- _"`next build` builds the production application in the .next folder. After building, `next start` starts a Node.js server"_
+>`next build` builds the production application in the .next folder. After building, `next start` starts a Node.js server
 
 ## Code Organization
