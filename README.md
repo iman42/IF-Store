@@ -18,3 +18,7 @@ This will run all the services in production-mode, and connect them to each othe
 ## To run in development mode:
 
 See the `README.md` in the service you're trying to run.
+
+## To configure editor:
+
+This is treated as a monorepo. A default configuration and some recommended extensions have been specified for the [VSCode](https://code.visualstudio.com/) code editor. To see the recommended extensions, open the root folder in VSCode, press `⌘+Shift+P` (or `Ctrl+Shift+P` on Windows), and execute the `Extensions: Show Recommended Extensions` command.

@@ -1,8 +1,8 @@
 {
-    "eslint.workingDirectories": [ "frontend" ],
-    "jestrunner.configPath": "frontend/jest.config.js",
-    "jestrunner.jestCommand": "cd frontend ; node_modules/.bin/jest",
+    "eslint.workingDirectories": [ "services/frontend" ],
+    "jestrunner.configPath": "services/frontend/jest.config.js",
+    "jestrunner.jestCommand": "cd services/frontend ; node_modules/.bin/jest",
     "npm.useRootDirectory": false,
-    "npm.includeDirectories": [ "frontend" ],
+    "npm.includeDirectories": [ "services/frontend" ],
     "eslint.codeActionsOnSave.mode": "all"
 }
