@@ -1,7 +1,5 @@
 FROM node:alpine
 
-RUN node -v
-
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
