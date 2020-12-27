@@ -11,11 +11,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class ComicController {
-    
+
     @PostMapping("/comic")
-    public void upload(@RequestParam("file") MultipartFile file){
+    public void upload(@RequestParam("file") MultipartFile file) {
     }
-    
+
     @ExceptionHandler(MultipartException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handleBadFile() {

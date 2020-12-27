@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ComicStoreApplicationTests {
 
 	@Test
-	void contextLoads() {
+	void runs() {
 	}
 
 }

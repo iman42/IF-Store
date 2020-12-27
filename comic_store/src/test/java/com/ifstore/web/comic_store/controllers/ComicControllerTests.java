@@ -7,6 +7,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
+import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -18,28 +20,23 @@ public class ComicControllerTests {
     public MockMvc mockMvc;
 
     @Nested
-    class IfFileUploaded{
+    class GivenFileInRequest {
         private MockMultipartFile file = new MockMultipartFile("file", "filename.png", "image/png", "CONTENT".getBytes());
+        private MockMultipartHttpServletRequestBuilder request = MockMvcRequestBuilders.multipart("/comic").file(file);
 
         @Test
-        public void shouldReturn200() throws Exception {
-            mockMvc.perform(
-                MockMvcRequestBuilders.multipart("/comic").file(file)
-            ).andExpect(
-                MockMvcResultMatchers.status().isOk()
-            );
+        public void returns200() throws Exception {
+            mockMvc.perform(request).andExpect(MockMvcResultMatchers.status().isOk());
         }
     }
-    
+
     @Nested
-    class IfNoFileUploaded {
+    class GivenNoFileInRequest {
+        private MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/comic");
+
         @Test
-        public void shouldReturn400() throws Exception {
-            mockMvc.perform(
-                MockMvcRequestBuilders.post("/comic")
-            ).andExpect(
-                MockMvcResultMatchers.status().isBadRequest()
-            );
+        public void returns400() throws Exception {
+            mockMvc.perform(request).andExpect(MockMvcResultMatchers.status().isBadRequest());
         }
     }
 }
