@@ -1,5 +1,8 @@
 This is a [Spring](https://spring.io) project bootstrapped with [Spring Boot Initializr](https://start.spring.io).
 
+## Dependencies
+- [Java 11 JDK](https://adoptopenjdk.net/)
+
 ## To Run
 
 To run in development-mode, execute the [Maven Wrapper](https://maven.apache.org/) task `spring-boot:run`. Like this:
