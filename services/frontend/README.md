@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Dependencies
 - [NVM](https://github.com/nvm-sh/nvm)
-    - This will install [NodeJS](https://nodejs.org/) and [NPM](https://www.npmjs.com/get-npm)
+    - This will install [NodeJS](https://nodejs.org/) and [NPM](https://www.npmjs.com/)
 
 **To install all dependencies:**
 ```bash
@@ -10,6 +10,8 @@ nvm install
 nvm use
 npm ci
 ```
+
+After this, run `npm use` when opening a new terminal.
 
 ## To Run
 
