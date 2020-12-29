@@ -10,12 +10,13 @@ COPY mvnw.cmd .
 COPY pom.xml .
 RUN ./mvnw dependency:go-offline
 
-# Copy code and build
+# Copy code and build into .jar
 COPY . /app
 RUN ./mvnw install
 
 FROM adoptopenjdk:11-jre AS run
 
+# Copy .jar from other container
 RUN mkdir -p /app
 WORKDIR /app
 COPY --from=build /app/target/*.jar /app/run.jar
