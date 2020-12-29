@@ -5,3 +5,7 @@ services:
     build: './services/frontend/.'
     ports:
       - 3000:3000
+  comic-store:
+    build: './services/comic_store/.'
+    ports:
+      - 8080:8080

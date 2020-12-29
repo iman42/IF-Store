@@ -1,0 +1,23 @@
+FROM adoptopenjdk:11-jdk AS build
+
+RUN mkdir -p /app
+WORKDIR /app
+
+# Cache getting dependencies through Maven Wrapper
+COPY .mvn /app/.mvn
+COPY mvnw .
+COPY mvnw.cmd .
+COPY pom.xml .
+RUN ./mvnw dependency:go-offline
+
+# Copy code and build
+COPY . /app
+RUN ./mvnw install
+
+FROM adoptopenjdk:11-jre AS run
+
+RUN mkdir -p /app
+WORKDIR /app
+COPY --from=build /app/target/*.jar /app/run.jar
+
+CMD ["java", "-jar", "run.jar"]
