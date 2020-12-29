@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cd services/comic_store
+(java -version 2>&1 | grep "version \"11") && ./mvnw clean spring-boot:run &
+cd -
+
+cd services/frontend
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+nvm install
+npm ci
+npm run dev &
+
+cd -

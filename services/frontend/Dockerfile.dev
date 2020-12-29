@@ -1,0 +1,7 @@
+FROM node:14-alpine
+
+VOLUME ["/app"]
+
+# Cache getting dependencies through NPM
+
+RUN ls /app
