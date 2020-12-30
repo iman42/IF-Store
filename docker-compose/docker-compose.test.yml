@@ -3,9 +3,9 @@ version: '3.9'
 services:
   frontend-test: 
     build:
-      context: 'services/frontend'
+      context: '../services/frontend'
       dockerfile: 'Dockerfile.test'
   comic_store-test:
     build: 
-      context: 'services/comic_store'
+      context: '../services/comic_store'
       dockerfile: 'Dockerfile.test'
