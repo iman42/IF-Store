@@ -1,4 +1,6 @@
 # IF Store
+![Build Status](https://github.com/iman42/IF-STORE/workflows/CI/badge.svg)
+
 This repo contains a bunch of services which, together, run the IF Store comic book website.
 
 ## Architecture:
