@@ -1,6 +1,9 @@
 # IF Store
 This repo contains a bunch of services which, together, run the IF Store comic book website.
 
+## Architecture:
+![Architecture Diagram](architecture/architecture.drawio.png)
+
 ## Dependencies:
 Although each service has its own dependencies (check the `README.md` files in the services for details), everything has been configured to run inside docker. So, the only dependency is:
 - [Docker Compose](https://docs.docker.com/compose/install/), usually included in "Docker Desktop" for Windows and Mac, otherwise needs to be installed separately.
