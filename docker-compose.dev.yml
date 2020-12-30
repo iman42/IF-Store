@@ -6,15 +6,17 @@ services:
       context: 'services/frontend'
       dockerfile: 'Dockerfile.dev'
     volumes:
-      - /Users/Iman42/Documents/IF-Store/services/frontend:/app
+      - ./services/frontend:/app
       - nodemodules:/app/node_modules
     ports:
       - 3000:3000
-  # comic_store:
-  #   build: 
-  #     context: 'services/comic_store'
-  #     dockerfile: 'Dockerfile.dev'
-  #   ports:
-  #     - 8080:8080
+  comic_store:
+    build: 
+      context: 'services/comic_store'
+      dockerfile: 'Dockerfile.dev'
+    volumes:
+      - ./services/comic_store:/app
+    ports:
+      - 8080:8080
 volumes:
   nodemodules: {}
