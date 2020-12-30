@@ -1,11 +1,14 @@
 {
     "recommendations": [
+        // General stuff
+        "hediet.vscode-drawio", // ability to edit drawio images
+
         // JavaScript stuff
         "dbaeumer.vscode-eslint", // automatic linter
         "firsttris.vscode-jest-runner", // to run tests
         "eg2.vscode-npm-script", // to provide suggestions when editing package.json
         "christian-kohler.npm-intellisense", // to provide suggestions based on package.json
-        
+
         // Java stuff
         "redhat.java", // support for java language (go-to-definition, etc)
         "vscjava.vscode-maven", // to run maven tasks
