@@ -1,0 +1,9 @@
+version: '3.9'
+
+services:
+  comic_store:
+    build: 
+      context: ../services/comic_store
+      dockerfile: Dockerfile.prod
+    ports:
+      - 8080:8080

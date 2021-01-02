@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  frontend: 
+    build:
+      context: ../services/frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ../services/frontend:/app
+      - nodemodules:/app/node_modules
+    ports:
+      - 3000:3000
+volumes:
+  nodemodules: {}

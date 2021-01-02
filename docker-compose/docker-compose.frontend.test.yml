@@ -1,0 +1,7 @@
+version: '3.9'
+
+services:
+  frontend-test: 
+    build:
+      context: ../services/frontend
+      dockerfile: Dockerfile.test

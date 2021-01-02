@@ -1,3 +1,5 @@
 #!/bin/bash
 
-docker-compose -f docker-compose/docker-compose.${1}.yml up --build
+docker_compose_files=(docker-compose/docker-compose.*.${1}.yml)
+as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
+docker-compose $as_arguments up --build
