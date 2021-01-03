@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  frontend: 
+  frontend-service: 
     build:
       context: ../services/frontend
       dockerfile: Dockerfile.prod

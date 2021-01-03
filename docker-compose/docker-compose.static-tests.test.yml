@@ -1,0 +1,7 @@
+version: '3.9'
+
+services:
+  static-tests:
+    build: 
+      context: ..
+      dockerfile: static-tests/Dockerfile.test

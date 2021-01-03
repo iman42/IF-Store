@@ -1,0 +1,14 @@
+FROM ubuntu
+
+RUN apt-get update
+RUN apt-get install -y python3-pip
+
+RUN python3 -m pip install -U pytest
+
+# Note: the context for this file should
+#  be the root directory of the repository.
+COPY . /app
+
+WORKDIR /app/static-tests
+
+CMD pytest
