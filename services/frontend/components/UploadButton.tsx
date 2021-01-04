@@ -1,11 +1,20 @@
+import Button from "@material-ui/core/Button";
+import React from "react";
 import styles from "./UploadButton.module.css";
 
-const UploadButton = () => (
+const UploadButton = () : JSX.Element => (
     <div className={styles.grid}>
-        <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Upload</h3>
-            <p>Give us ya' masta' piece</p>
-        </a>
+        <input 
+            className={styles.hidden} 
+            id="upload-comic" 
+            type="file" 
+            onChange={(e) => fetch("google.com")}
+            name="file"></input>
+        <label htmlFor='upload-comic'>
+            <Button variant="outlined" color="primary" component="span">
+                Upload Comic
+            </Button>
+        </label>
     </div>
 );
 
