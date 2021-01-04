@@ -20,23 +20,28 @@ public class ComicControllerTests {
     public MockMvc mockMvc;
 
     @Nested
-    class GivenFileInRequest {
-        private MockMultipartFile file = new MockMultipartFile("file", "filename.png", "image/png", "CONTENT".getBytes());
-        private MockMultipartHttpServletRequestBuilder request = MockMvcRequestBuilders.multipart("/comic").file(file);
+    class Post {
+        @Nested
+        class GivenFileInRequest {
+            private MockMultipartFile file = new MockMultipartFile("file", "filename.png", "image/png",
+                    "CONTENT".getBytes());
+            private MockMultipartHttpServletRequestBuilder request = MockMvcRequestBuilders.multipart("/comics")
+                    .file(file);
 
-        @Test
-        public void returns200() throws Exception {
-            mockMvc.perform(request).andExpect(MockMvcResultMatchers.status().isOk());
+            @Test
+            public void returns200() throws Exception {
+                mockMvc.perform(request).andExpect(MockMvcResultMatchers.status().isOk());
+            }
         }
-    }
 
-    @Nested
-    class GivenNoFileInRequest {
-        private MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/comic");
+        @Nested
+        class GivenNoFileInRequest {
+            private MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/comics");
 
-        @Test
-        public void returns400() throws Exception {
-            mockMvc.perform(request).andExpect(MockMvcResultMatchers.status().isBadRequest());
+            @Test
+            public void returns400() throws Exception {
+                mockMvc.perform(request).andExpect(MockMvcResultMatchers.status().isBadRequest());
+            }
         }
     }
 }
