@@ -12,5 +12,5 @@ test("should upload comic", () => {
     render(<UploadButton />);
     const element = screen.getByLabelText("Upload Comic");
     fireEvent.change(element, {target: {files: [new File(["content"], "name")]}});
-    console.log(fetchMock.mock.calls);
+    expect(fetchMock.mock.calls[0][0]).toEqual("localhost:8080/upload");
 });

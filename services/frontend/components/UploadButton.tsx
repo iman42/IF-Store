@@ -8,8 +8,8 @@ const UploadButton = () : JSX.Element => (
             className={styles.hidden} 
             id="upload-comic" 
             type="file" 
-            onChange={(e) => fetch("google.com")}
-            name="file"></input>
+            onChange={() => fetch("HTTP://localhost:8080/upload")}
+            name="file" />
         <label htmlFor='upload-comic'>
             <Button variant="outlined" color="primary" component="span">
                 Upload Comic
