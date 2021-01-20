@@ -1,6 +1,7 @@
 package com.ifstore.web.comic_store.controllers;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 public class ComicController {
 
+    @CrossOrigin(originPatterns = "http://localhost:*")
     @PostMapping("/comics")
     public void upload(@RequestParam("file") MultipartFile file) {}
 
