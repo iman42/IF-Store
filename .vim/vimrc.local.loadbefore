@@ -1,0 +1,15 @@
+" To add more plugins (list is in vim-plug style):
+    if !exists("added_plugins")
+        let added_plugins = []
+    endif
+    let added_plugins = added_plugins + [      
+        \ ['leafgarland/typescript-vim', {}],
+        \ ['peitalin/vim-jsx-typescript', {}],
+    \]
+
+" To add more coc.nvim default installed plugins:
+    if !exists("added_coc_plugins")
+        let added_coc_plugins = []
+    endif
+    let added_coc_plugins = added_coc_plugins + ["coc-java", "coc-tsserver", "coc-eslint"]
+
