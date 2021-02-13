@@ -1,4 +1,10 @@
 {
     "eslint.autoFixOnSave": true,
-    "eslint.workingDirectories": ["services/frontend/"]
+    "eslint.workingDirectories": [
+      "services/frontend/"
+    ],
+    "cSpell.words": [
+      "Autowired",
+      "Servlet"
+    ]
 }
