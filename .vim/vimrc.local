@@ -57,5 +57,17 @@ function! RunTest() abort
     endif
 endfunction
 
+function! Run() abort
+    let name = "term://RUN"
+    split
+    if(bufname(name) != "")
+        execute "buffer " . name
+    else
+        execute "term ./run dev"
+        execute "file " . name
+    endif
+endfunction
+
 command! FILETEST call RunTestFile()
 command! TEST call RunTest()
+command! RUN call Run()
