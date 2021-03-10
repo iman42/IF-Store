@@ -24,7 +24,3 @@ test("should upload comic", () => {
     expect(fetchMock.mock.calls[0][0]).toEqual("HTTP://localhost:8080/comics");
     expect(fetchMock.mock.calls[0][1]?.method).toEqual("POST");
 });
-
-test("fails", ()=>{
-    fail();
-});
