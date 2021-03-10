@@ -3,6 +3,7 @@
 This repo contains a bunch of services which, together, run the IF Store comic book website.
 
 ## Architecture:
+
 ![Architecture Image](architecture/architecture.drawio.png)
 
 ## Dependencies: 
@@ -44,3 +45,7 @@ To see the recommended extensions:
 1. open the root folder in VSCode
 2. press `⌘+Shift+P` (or `Ctrl+Shift+P` on Windows)
 3. execute the `Extensions: Show Recommended Extensions` command.
+
+## To add a new service:
+
+Just add a new directory in `./services/`, and make sure all the tests pass :)
