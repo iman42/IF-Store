@@ -7,9 +7,9 @@ exec 5>&1
 output=$(docker-compose $as_arguments up --build | tee >(cat - >&5))
 
 failed_services=$(echo "${output}" | grep "exited with code" | grep -v "exited with code 0")
-failed_services_count=$(echo "${failed_services}" | wc -l)
+failed_services_count=$(echo "${failed_services}" | grep . | wc -l)
 
 if [ $failed_services_count -ne 0 ]; then
-    printf "\n\n${failed_services}"
+    printf "${failed_services}"
     exit 1
 fi
