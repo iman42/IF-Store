@@ -2,22 +2,36 @@
 
 This repo contains a bunch of services which, together, run the IF Store comic book website.
 
-## To run in production mode:
-
-**Prequisites:** 
+## Dependencies: 
 
 - [Docker Compose](https://docs.docker.com/compose/install/), usually included in "Docker Desktop" for Windows and Mac, otherwise needs to be installed separately.
 
+## To test:
+
 From root directory, run: 
 ```bash
-docker-compose -f docker-compose.prod.yml up --build
+./run test
+```
+
+## To run in production mode:
+
+From root directory, run: 
+```bash
+./run prod
 ```
 
 This will run all the services in production-mode, and connect them to each other. To hit the frontend from the browser, visit [http://localhost:3000/](http://localhost:3000/).
 
 ## To run in development mode:
 
-See the `README.md` in the service you're trying to run.
+From root directory, run: 
+```bash
+./run dev
+```
+
+This will run all the services in development-mode, and connect them to each other. To hit the frontend from the browser, visit [http://localhost:3000/](http://localhost:3000/).
+
+You can also run services individually, outside of docker. See the `README.md` in the service you're trying to run.
 
 ## To configure editor:
 
