@@ -38,4 +38,9 @@ You can also run services individually, outside of docker. See the `README.md` i
 
 ## To configure editor:
 
-This is treated as a monorepo. A default configuration and some recommended extensions have been specified for the [VSCode](https://code.visualstudio.com/) code editor. To see the recommended extensions, open the root folder in VSCode, press `⌘+Shift+P` (or `Ctrl+Shift+P` on Windows), and execute the `Extensions: Show Recommended Extensions` command.
+This is treated as a monorepo. A default configuration and some recommended extensions have been specified for the [VSCode](https://code.visualstudio.com/) code editor. 
+
+To see the recommended extensions: 
+1. open the root folder in VSCode
+2. press `⌘+Shift+P` (or `Ctrl+Shift+P` on Windows)
+3. execute the `Extensions: Show Recommended Extensions` command.
