@@ -1,5 +1,6 @@
 package com.ifstore.web.comic_store.controllers;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,25 @@ public class ComicControllerTests {
     @Nested
     class Post {
         @Nested
-        class GivenFileInRequest {
+        class GivenRequestMadeWithFile {
             private MockMultipartFile file = new MockMultipartFile("file", "filename.png", "image/png",
                     "CONTENT".getBytes());
-            private MockMultipartHttpServletRequestBuilder request = MockMvcRequestBuilders.multipart("/comics")
+            private MockMultipartHttpServletRequestBuilder postRequest = MockMvcRequestBuilders.multipart("/comics")
                     .file(file);
+            private MockHttpServletRequestBuilder getRequest = MockMvcRequestBuilders.get("/comics");
 
             @Test
             public void returns200() throws Exception {
-                mockMvc.perform(request).andExpect(MockMvcResultMatchers.status().isOk());
+                mockMvc.perform(postRequest).andExpect(MockMvcResultMatchers.status().isOk());
+            }
+
+            @Disabled
+            @Test
+            public void canGetFile() throws Exception {
+                mockMvc.perform(postRequest);
+                mockMvc.perform(getRequest).andExpect(
+                    MockMvcResultMatchers.content().string("[{name: "+file.getName()+"}]")
+                );
             }
         }
 
