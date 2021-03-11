@@ -10,4 +10,5 @@
         "source.organizeImports": true
     },
     "python.formatting.provider": "black",
+    "hediet.vscode-drawio.theme": "atlas"
 }
