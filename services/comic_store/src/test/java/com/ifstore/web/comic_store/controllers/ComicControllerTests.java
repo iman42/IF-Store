@@ -1,6 +1,5 @@
 package com.ifstore.web.comic_store.controllers;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,12 +36,11 @@ public class ComicControllerTests {
                 mockMvc.perform(postRequest).andExpect(MockMvcResultMatchers.status().isOk());
             }
 
-            @Disabled
             @Test
             public void canGetFile() throws Exception {
                 mockMvc.perform(postRequest);
                 mockMvc.perform(getRequest).andExpect(
-                    MockMvcResultMatchers.content().string("[{name: "+file.getName()+"}]")
+                    MockMvcResultMatchers.content().string("[{name: \""+file.getName()+"\"}]")
                 );
             }
         }

@@ -1,5 +1,9 @@
 package com.ifstore.web.comic_store.controllers;
 
+import com.ifstore.web.comic_store.repositories.ComicRecord;
+import com.ifstore.web.comic_store.repositories.ComicRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,14 +17,20 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class ComicController {
+    
+    @Autowired
+    private ComicRepository repo;
 
     @CrossOrigin(originPatterns = "http://localhost:*") //[TODO] make not bad (xss vulnerability).
     @PostMapping("/comics")
-    public void upload(@RequestParam("file") MultipartFile file) {}
+    public void upload(@RequestParam("file") MultipartFile file) {
+        var record = new ComicRecord(12L, file.getName(), "description");
+        repo.save(record);
+    }
 
     @GetMapping("/comics")
     public String getAll(){
-        return "bananas";
+        return "[{name: \"" + repo.findById(12L).get().getName() + "\"}]";
     }
 
     @ExceptionHandler(MultipartException.class)
