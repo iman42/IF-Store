@@ -4,7 +4,7 @@ docker_compose_files=(docker-compose/docker-compose.*.${1}.yml)
 as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
 exec 5>&1
-output=$(docker-compose $as_arguments up --build | tee >(cat - >&5))
+output=$(docker-compose $as_arguments up --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes --build | tee >(cat - >&5))
 
 failed_services=$(echo "${output}" | grep "exited with code" | grep -v "exited with code 0")
 failed_services_count=$(echo "${failed_services}" | grep . | wc -l)

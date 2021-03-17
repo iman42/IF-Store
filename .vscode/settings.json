@@ -10,5 +10,6 @@
         "source.organizeImports": true
     },
     "python.formatting.provider": "black",
-    "hediet.vscode-drawio.theme": "atlas"
+    "hediet.vscode-drawio.theme": "atlas",
+    "java.configuration.updateBuildConfiguration": "automatic"
 }
