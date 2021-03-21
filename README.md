@@ -1,4 +1,5 @@
 # IF Store
+![Test Status](https://github.com/iman42/if-store/actions/workflows/main.yml/badge.svg)
 
 This repo contains a bunch of services which, together, run the IF Store comic book website.
 
