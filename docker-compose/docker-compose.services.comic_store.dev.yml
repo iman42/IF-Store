@@ -21,3 +21,5 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: user
       POSTGRES_DB: db
+    volumes:
+      - ../services/comic_store/src/schema:/docker-entrypoint-initdb.d

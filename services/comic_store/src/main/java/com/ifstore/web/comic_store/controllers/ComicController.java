@@ -24,13 +24,13 @@ public class ComicController {
     @CrossOrigin(originPatterns = "http://localhost:*") //[TODO] make not bad (xss vulnerability).
     @PostMapping("/comics")
     public void upload(@RequestParam("file") MultipartFile file) {
-        var record = new ComicRecord(12L, file.getName(), "description");
+        var record = new ComicRecord(12L, file.getName(), "", "");
         repo.save(record);
     }
 
     @GetMapping("/comics")
     public String getAll(){
-        return "[{name: \"" + repo.findById(12L).get().getName() + "\"}]";
+        return "[{name: \"" + repo.findById(12L).get().getTitle() + "\"}]";
     }
 
     @ExceptionHandler(MultipartException.class)

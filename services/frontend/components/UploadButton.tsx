@@ -7,7 +7,7 @@ const UploadButton = (): JSX.Element => {
         const files = e.target.files;
         const formData = new FormData();
         if (files && files[0])
-            formData.append("file", files[0]);
+            formData.append("file", files[0], );
         fetch("HTTP://localhost:8080/comics", { method: "POST", body: formData });
     };
 

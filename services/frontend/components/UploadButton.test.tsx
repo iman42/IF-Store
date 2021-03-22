@@ -19,8 +19,9 @@ test("should upload comic", () => {
     render(<UploadButton />);
     const element = screen.getByLabelText("Upload Comic");
 
-    fireEvent.change(element, { target: { files: [getFakeFile("content", "text/html", "file.txt")] } });
+    fireEvent.change(element, { target: { files: [getFakeFile("content", "text/html", "abcde.txt")] } });
 
     expect(fetchMock.mock.calls[0][0]).toEqual("HTTP://localhost:8080/comics");
     expect(fetchMock.mock.calls[0][1]?.method).toEqual("POST");
+    console.log(fetchMock.mock.calls[0][1]?.body.entries().next());
 });
