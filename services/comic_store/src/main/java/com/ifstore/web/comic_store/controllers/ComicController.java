@@ -24,7 +24,7 @@ public class ComicController {
     @CrossOrigin(originPatterns = "http://localhost:*") //[TODO] make not bad (xss vulnerability).
     @PostMapping("/comics")
     public void upload(@RequestParam("file") MultipartFile file) {
-        var record = new ComicRecord(12L, file.getName(), "", "");
+        var record = new ComicRecord(12L, file.getResource().getFilename(), "", "");
         repo.save(record);
     }
 
