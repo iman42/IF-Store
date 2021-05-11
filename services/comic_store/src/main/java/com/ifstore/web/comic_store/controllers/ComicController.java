@@ -1,5 +1,7 @@
 package com.ifstore.web.comic_store.controllers;
 
+import java.util.UUID;
+
 import com.ifstore.web.comic_store.repositories.ComicRecord;
 import com.ifstore.web.comic_store.repositories.ComicRepository;
 
@@ -23,14 +25,19 @@ public class ComicController {
 
     @CrossOrigin(originPatterns = "http://localhost:*") //[TODO] make not bad (xss vulnerability).
     @PostMapping("/comics")
-    public void upload(@RequestParam("file") MultipartFile file) {
-        var record = new ComicRecord(12L, file.getResource().getFilename(), "", "");
+    public void upload(@RequestParam("file") MultipartFile file) { 
+        var record = new ComicRecord(UUID.randomUUID(), file.getResource().getFilename(), "", "");
         repo.save(record);
     }
 
     @GetMapping("/comics")
     public String getAll(){
-        return "[{name: \"" + repo.findById(12L).get().getTitle() + "\"}]";
+        var allComics = repo.findAll();
+        String allTitles = "[";
+        for (var comic : allComics){
+            allTitles = allTitles + ("{name: \"" + comic.getTitle() + "\"}\n");
+        }
+        return allTitles + "]";
     }
 
     @ExceptionHandler(MultipartException.class)
