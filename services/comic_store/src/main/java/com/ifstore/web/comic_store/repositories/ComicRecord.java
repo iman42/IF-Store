@@ -1,5 +1,7 @@
 package com.ifstore.web.comic_store.repositories;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -15,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Table(name="comics")
 public class ComicRecord {
     @Id
-    private Long id;
+    private UUID id;
 
     private String title;
     private String comic_path;

@@ -40,7 +40,7 @@ public class ComicControllerTests {
             public void canGetFile() throws Exception {
                 mockMvc.perform(postRequest);
                 mockMvc.perform(getRequest).andExpect(
-                    MockMvcResultMatchers.content().string("[{name: \""+file.getName()+"\"}]")
+                    MockMvcResultMatchers.content().string("[{name: \""+file.getOriginalFilename()+"\"}\n]")
                 );
             }
         }
