@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/IF-Store.iml" filepath="$PROJECT_DIR$/.idea/IF-Store.iml" />
       <module fileurl="file://$PROJECT_DIR$/services/comic_store/comic_store.iml" filepath="$PROJECT_DIR$/services/comic_store/comic_store.iml" />
+      <module fileurl="file://$PROJECT_DIR$/services/frontend/frontend.iml" filepath="$PROJECT_DIR$/services/frontend/frontend.iml" />
     </modules>
   </component>
 </project>
