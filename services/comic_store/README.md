@@ -2,6 +2,8 @@ This is a [Spring](https://spring.io) project bootstrapped with [Spring Boot Ini
 
 ## Dependencies
 - [Java 11 JDK](https://adoptopenjdk.net/)
+- A running Postgres database with the schema defined in `./src/schema/schema.sql`
+    - See the `./src/main/resources/application.properties` file to see which environment variables can be used to specify database connection details to this application.
 
 ## To Run
 

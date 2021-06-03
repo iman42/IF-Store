@@ -10,6 +10,7 @@ This repo contains a bunch of services which, together, run the IF Store comic b
 ## Dependencies: 
 
 - [Docker Compose](https://docs.docker.com/compose/install/), usually included in "Docker Desktop" for Windows and Mac, otherwise needs to be installed separately.
+- A running docker engine (start the docker desktop program)
 
 ## To test:
 
