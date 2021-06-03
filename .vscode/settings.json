@@ -11,5 +11,8 @@
     },
     "python.formatting.provider": "black",
     "hediet.vscode-drawio.theme": "atlas",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "cSpell.words": [
+        "Autowired"
+    ]
 }

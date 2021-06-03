@@ -6,10 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @AutoConfigureTestDatabase
-class ComicStoreApplicationTests {
+class ApplicationTests {
 
 	@Test
-	void runs() {
-	}
+	void runs() {}
 
 }

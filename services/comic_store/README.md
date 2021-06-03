@@ -1,3 +1,7 @@
+# Comic Store
+
+Stores comics and covers.
+
 This is a [Spring](https://spring.io) project bootstrapped with [Spring Boot Initializr](https://start.spring.io).
 
 ## Dependencies

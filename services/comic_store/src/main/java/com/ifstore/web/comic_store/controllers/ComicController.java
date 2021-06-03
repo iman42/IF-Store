@@ -1,9 +1,9 @@
 package com.ifstore.web.comic_store.controllers;
 
-import java.util.UUID;
+import java.util.Set;
 
-import com.ifstore.web.comic_store.repositories.ComicRecord;
-import com.ifstore.web.comic_store.repositories.ComicRepository;
+import com.ifstore.web.comic_store.domain.Comic;
+import com.ifstore.web.comic_store.services.ComicStorageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,29 +19,35 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 public class ComicController {
-    
-    @Autowired
-    private ComicRepository repo;
 
-    @CrossOrigin(originPatterns = "http://localhost:*") //[TODO] make not bad (xss vulnerability).
+    @Autowired
+    private ComicStorageService comicStorageService;
+
+    @CrossOrigin(originPatterns = "http://localhost:*") // [TODO] make not bad (xss vulnerability).
     @PostMapping("/comics")
-    public void upload(@RequestParam("file") MultipartFile file) { 
-        var record = new ComicRecord(UUID.randomUUID(), file.getResource().getFilename(), "", "");
-        repo.save(record);
+    public void upload(@RequestParam("file") MultipartFile file) {
+        comicStorageService.storeComic(toComic(file));
     }
 
     @GetMapping("/comics")
-    public String getAll(){
-        var allComics = repo.findAll();
-        String allTitles = "[";
-        for (var comic : allComics){
-            allTitles = allTitles + ("{name: \"" + comic.getTitle() + "\"}\n");
-        }
-        return allTitles + "]";
+    public String getAll() {
+        return toResponse(comicStorageService.getAll());
     }
 
     @ExceptionHandler(MultipartException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handleBadFile() {
+    }
+
+    private String toResponse(Set<Comic> comics){
+        String allTitles = "[";
+        for (var comic : comics) {
+            allTitles = allTitles + ("{name: \"" + comic.getTitle() + "\"}\n");
+        }
+        return allTitles + "]";
+    }
+
+    private Comic toComic(MultipartFile file) {
+        return new Comic(file.getResource().getFilename());
     }
 }
