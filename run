@@ -1,6 +1,28 @@
 #!/bin/bash
 
-docker_compose_files=(docker-compose/docker-compose.*.${1}.yml)
+if [ $# -eq 0 ]
+  then
+    echo "USAGE:"
+    echo "./run (dev|prod|test) [string_to_match]"
+    echo ""
+    echo "EXAMPLES:"
+    echo "./run prod"
+    echo "./run test comic_store"
+    exit 1
+fi
+
+if [ $# -eq 1 ]
+    then
+        type=${1}
+        services='*'
+fi
+if [ $# -eq 2 ]
+    then
+        type=${1}
+        services="*${2}*"
+fi
+
+docker_compose_files=(docker-compose/docker-compose.${services}.${type}.yml)
 as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
 exec 5>&1

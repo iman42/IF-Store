@@ -1,4 +1,4 @@
-package com.ifstore.web.comic_store.repositories;
+package com.ifstore.web.comic_store.adapters.database.jpa;
 
 import java.util.UUID;
 
@@ -10,12 +10,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Entity
 @Table(name="comics")
-public class ComicRecord {
+public class ComicJpaRecord {
     @Id
     private UUID id;
 
