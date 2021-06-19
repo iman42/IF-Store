@@ -1,8 +1,8 @@
-version: '3.9'
+version: "3.9"
 
 services:
   comic_store-dev:
-    build: 
+    build:
       context: ../services/comic_store
       dockerfile: Dockerfile.dev
     volumes:
@@ -13,7 +13,7 @@ services:
       DB_USER: user
       DB_PASSWORD: password
       DB_URL: jdbc:postgresql://db:5432/db
-    
+
   db:
     image: postgres
     restart: always
@@ -23,3 +23,15 @@ services:
       POSTGRES_DB: db
     volumes:
       - ../services/comic_store/src/schema:/docker-entrypoint-initdb.d
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - AWS_DEFAULT_REGION=us-east-1
+      - EDGE_PORT=4566
+      - SERVICES=s3
+      - DATA_DIR=/tmp/comics/
+    ports:
+      - "4566:4566"
+    volumes:
+      - ../services/comic_store/test/resources/s3:/tmp/comics/
+      - "/var/run/docker.sock:/var/run/docker.sock"
