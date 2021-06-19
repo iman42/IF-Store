@@ -22,6 +22,10 @@ if [ $# -eq 2 ]
         services="*${2}*"
 fi
 
+commit_hash=$(git rev-parse HEAD)
+date=$(date -u +%F)
+export TAG=${date}.${commit_hash}
+
 docker_compose_files=(docker-compose/docker-compose.${services}.${type}.yml)
 as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
