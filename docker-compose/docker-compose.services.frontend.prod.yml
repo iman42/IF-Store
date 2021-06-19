@@ -1,7 +1,8 @@
 version: '3.9'
 
 services:
-  frontend-service: 
+  frontend: 
+    image: frontend:${TAG}
     build:
       context: ../services/frontend
       dockerfile: Dockerfile.prod

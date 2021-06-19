@@ -1,7 +1,8 @@
 version: '3.9'
 
 services:
-  comic_store-service:
+  comic_store:
+    image: comic_store:${TAG}
     build: 
       context: ../services/comic_store
       dockerfile: Dockerfile.prod

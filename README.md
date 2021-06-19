@@ -19,14 +19,14 @@ From root directory, run:
 ./run test
 ```
 
-## To run in production mode:
+## [In Progress] To run in production mode:
 
 From root directory, run: 
 ```bash
-./run prod
+./build
 ```
 
-This will run all the services in production-mode, and connect them to each other. To hit the frontend from the browser, visit [http://localhost:3000/](http://localhost:3000/).
+This will build tagged docker images with the production version of all the services. Those should be deployed in a kubernetes cluster somewhere.
 
 ## To run in development mode:
 

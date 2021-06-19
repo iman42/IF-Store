@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  comic_store-service:
+  comic_store-dev:
     build: 
       context: ../services/comic_store
       dockerfile: Dockerfile.dev

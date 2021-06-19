@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+    branches: [ master ]
+
+  # Allows running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Test
+        run: ./run test
+      - name: Build
+        run: ./build
+      - name: Publish Images
+        run: echo '[TODO] Publish the built images to a docker registry'
+      - name: Deploy
+        run: echo '[TODO] Deploy the published images'
+      - name: Verify Deployment
+        run: echo '[TODO] Verify that the deployment was successful'
+      - name: Verify Application
+        run: echo '[TODO] Verify that the app is behaving correctly'

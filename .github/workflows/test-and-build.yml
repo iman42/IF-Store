@@ -1,8 +1,6 @@
-name: tests
+name: test-and-build
 
 on:
-  push:
-    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -10,10 +8,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  test-and-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: satackey/action-docker-layer-caching@v0.0.11
-      - name: Run tests
+      - name: Test
         run: ./run test
+      - name: Build
+        run: ./build
