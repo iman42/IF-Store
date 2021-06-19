@@ -5,6 +5,7 @@
 
         // JavaScript stuff
         "dbaeumer.vscode-eslint", // automatic linter
+        "esbenp.prettier-vscode", // more linting
         "firsttris.vscode-jest-runner", // to run tests
         "eg2.vscode-npm-script", // to provide suggestions when editing package.json
         "christian-kohler.npm-intellisense", // to provide suggestions based on package.json
