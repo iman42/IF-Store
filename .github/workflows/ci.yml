@@ -14,7 +14,8 @@ jobs:
         with:
           all_but_latest: true
           access_token: ${{ github.token }}
-  ci:
+  test-build-publish:
+    name: "Test, Build, and Publish Images"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,6 +25,10 @@ jobs:
         run: ./build
       - name: Publish Images
         run: echo '[TODO] Publish the built images to a docker registry'
+  deploy-verify:
+    name: "Deploy and Verify"
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy
         run: echo '[TODO] Deploy the published images'
       - name: Verify Deployment
