@@ -21,21 +21,32 @@ public class ComicIntegrationTests {
     @Autowired
     public MockMvc mockMvc;
 
-    private MockMultipartFile file = new MockMultipartFile("file", "filename.png", "image/png", "CONTENT".getBytes());
+    private byte[] CONTENT = "CONTENT".getBytes();
+    private MockMultipartFile file = new MockMultipartFile("file", "filename.png", "image/png", CONTENT);
     private MockMultipartHttpServletRequestBuilder postRequest = MockMvcRequestBuilders.multipart("/comics").file(file);
-    private MockHttpServletRequestBuilder getRequest = MockMvcRequestBuilders.get("/comics");
+    private MockHttpServletRequestBuilder getAllComicsRequest = MockMvcRequestBuilders.get("/comics");
 
     @Test
-    public void postReturns200() throws Exception {
-        mockMvc.perform(postRequest).andExpect(MockMvcResultMatchers.status().isOk());
+    public void postIsRestful() throws Exception {
+        mockMvc.perform(postRequest).andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.header().exists("Location"));
     }
 
     @Test
     public void canRoundTripComicName() throws Exception {
         mockMvc.perform(postRequest);
-        mockMvc.perform(getRequest).andExpect(
+        mockMvc.perform(getAllComicsRequest).andExpect(
                 MockMvcResultMatchers.content().string("[{name: \"" + file.getOriginalFilename() + "\"}\n]"));
     }
+
+    // @Test
+    // public void canRoundTripComicContent() throws Exception {
+    // mockMvc.perform(postRequest).andDo((response) -> {
+    // var getUrl = response.getResponse().getHeader("Location");
+    // mockMvc.perform(MockMvcRequestBuilders.get(getUrl))
+    // .andExpect(MockMvcResultMatchers.content().bytes(CONTENT));
+    // });
+    // }
 
     @Nested
     class GivenNoFileInPostRequest {

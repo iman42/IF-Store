@@ -5,10 +5,10 @@ import static java.util.stream.Collectors.toSet;
 import java.util.Set;
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.adapters.Result;
 import com.ifstore.web.comic_store.adapters.database.jpa.ComicJpaRecord;
 import com.ifstore.web.comic_store.adapters.database.jpa.ComicJpaRepository;
 import com.ifstore.web.comic_store.domain.Comic;
+import com.ifstore.web.comic_store.domain.ComicReference;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,17 +17,15 @@ import org.springframework.stereotype.Repository;
 public class ComicRepository {
     @Autowired
     private ComicJpaRepository jpaRepo;
-    
-    public Result save(Comic comic){
-        var record = new ComicJpaRecord(UUID.randomUUID(), comic.getTitle(), "", "");
+
+    public ComicReference save(Comic comic) {
+        UUID id = UUID.randomUUID();
+        var record = new ComicJpaRecord(id, comic.getTitle(), "", "");
         jpaRepo.save(record);
-        return Result.success();
+        return new ComicReference(id);
     }
-    
-    public Set<Comic> getAll(){
-        return jpaRepo.findAll()
-            .stream()
-            .map((record) -> new Comic(record.getTitle()))
-            .collect(toSet());
+
+    public Set<Comic> getAll() {
+        return jpaRepo.findAll().stream().map((record) -> new Comic(record.getTitle())).collect(toSet());
     }
 }
