@@ -39,7 +39,7 @@ public class ComicController {
     public void handleBadFile() {
     }
 
-    private String toResponse(Set<Comic> comics){
+    private String toResponse(Set<Comic> comics) {
         String allTitles = "[";
         for (var comic : comics) {
             allTitles = allTitles + ("{name: \"" + comic.getTitle() + "\"}\n");
