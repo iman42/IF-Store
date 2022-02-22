@@ -18,7 +18,7 @@ public class ComicRepository {
     @Autowired
     private ComicJpaRepository jpaRepo;
 
-    public ComicReference save(Comic comic) {
+    public ComicReference saveTitle(Comic comic) {
         UUID id = UUID.randomUUID();
         var record = new ComicJpaRecord(id, comic.getTitle(), "", "");
         jpaRepo.save(record);
