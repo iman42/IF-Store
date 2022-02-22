@@ -4,9 +4,9 @@ import React from "react";
 import UploadButton from "./UploadButton";
 
 const getFakeFile = (content: string, type: string, name: string): File => {
-    const blob: any = new Blob([content], { type});
+    const blob: any = new Blob([content], { type });
     blob["lastModifiedDate"] = "";
-    blob["name"] =name;
+    blob["name"] = name;
     return blob as File;
 };
 
@@ -17,11 +17,13 @@ test("should show file upload button", () => {
 
 test("should upload comic", () => {
     render(<UploadButton />);
-    const element = screen.getByLabelText("Upload Comic");
+    const form = screen.getByLabelText("Upload Comic");
 
-    fireEvent.change(element, { target: { files: [getFakeFile("content", "text/html", "abcde.txt")] } });
+    fireEvent.change(form, {
+        target: { files: [getFakeFile("content", "text/html", "abcde.txt")] },
+    });
 
     expect(fetchMock.mock.calls[0][0]).toEqual("HTTP://localhost:8080/comics");
     expect(fetchMock.mock.calls[0][1]?.method).toEqual("POST");
-    console.log(fetchMock.mock.calls[0][1]?.body.entries().next());
+    expect(fetchMock.mock.calls[0][1]?.body?.toString()).toEqual("[object FormData]");
 });
