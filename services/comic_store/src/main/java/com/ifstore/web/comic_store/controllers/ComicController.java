@@ -29,7 +29,7 @@ public class ComicController {
 
     final String GET_ENDPOINT = "/comics";
 
-    @CrossOrigin(originPatterns = "http://localhost:*", allowedHeaders = "*") // [TODO] make not bad (xss vulnerability).
+    @CrossOrigin(originPatterns = "http://localhost:*", allowedHeaders = "*") // [FUTURE] make not bad (xss vulnerability).
     @PostMapping("/comics")
     @ResponseStatus(HttpStatus.CREATED)
     public void upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) {

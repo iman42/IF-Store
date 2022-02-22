@@ -15,8 +15,8 @@ public class ComicStorageService {
     private ComicRepository comicRepository;
 
     public ComicReference storeComic(Comic comic) {
-        // TODO: save comic file in folder somewhere, remember filepath
-        // TODO: save comic cover in different folder somwhere, remember filepath
+        // PLAN: save comic file in folder somewhere, remember filepath
+        // PLAN: save comic cover in different folder somwhere, remember filepath
         return comicRepository.saveTitle(comic);   // send filepaths
     }
 
