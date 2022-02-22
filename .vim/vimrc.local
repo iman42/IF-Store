@@ -1,12 +1,12 @@
 function! RunFrontendTestFile() abort
     let path = expand('%:p')
-    execute "!export NVM_DIR=\"$HOME/.nvm\" && source \"/usr/local/opt/nvm/nvm.sh\" && cd services/frontend && nvm install && node_modules/.bin/jest " . path
+    execute "terminal source ~/.zshrc && cd services/frontend && nvm install && node_modules/.bin/jest " . path
 endfunction
 
 function! RunComicStoreTestFile() abort
     let file = expand('%:t:r')
 
-    execute "!cd services/comic_store && ./mvnw clean &&  ./mvnw -Dtest=" . file . "\\* test"
+    execute "terminal source ~/.zshrc && cd services/comic_store && ./mvnw clean &&  ./mvnw -Dtest=" . file . "\\* test"
 endfunction
 
 function! RunFrontendTest(path) abort
@@ -16,7 +16,7 @@ function! RunFrontendTest(path) abort
     " copy test description to @a
     norm 0f"l"ayi"
 
-    execute "!export NVM_DIR=\"$HOME/.nvm\" && source \"/usr/local/opt/nvm/nvm.sh\" && cd services/frontend && nvm install && node_modules/.bin/jest " . a:path . " -t \"" . @a . "\""
+    execute "terminal source ~/.zshrc && cd services/frontend && nvm install && node_modules/.bin/jest " . a:path . " -t \"" . @a . "\""
 endfunction
 
 function! RunComicStoreTest(path) abort
@@ -28,7 +28,7 @@ function! RunComicStoreTest(path) abort
     " copy test description to @a
     norm 0f(T "ayt(
 
-    execute "!cd services/comic_store && ./mvnw clean &&  ./mvnw -Dtest=" . file . "\\*\\#" . @a . " test"
+    execute "terminal source ~/.zshrc && cd services/comic_store && ./mvnw clean &&  ./mvnw -Dtest=" . file . "\\*\\#" . @a . " test"
 endfunction
 
 function! RunTestFile() abort
