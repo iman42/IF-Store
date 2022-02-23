@@ -1,6 +1,7 @@
 package com.ifstore.web.comic_store.controllers;
 
-import java.util.Set;
+import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,25 +28,21 @@ public class ComicController {
     @Autowired
     private ComicStorageService comicStorageService;
 
-    final String GET_ENDPOINT = "/comics";
+    final String ENDPOINT = "/comics";
 
-    @CrossOrigin(originPatterns = "http://localhost:*", allowedHeaders = "*") // [FUTURE] make not bad (xss vulnerability).
-    @PostMapping("/comics")
+    @CrossOrigin(originPatterns = "http://localhost:*", allowedHeaders = "*") // [FUTURE] make not bad (xss
+                                                                              // vulnerability).
+    @PostMapping(ENDPOINT)
     @ResponseStatus(HttpStatus.CREATED)
-    public void upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) {
+    public void upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
         Comic comic = toComic(file);
         ComicReference reference = comicStorageService.storeComic(comic);
-        response.setHeader("Location", GET_ENDPOINT + "/" + reference.id.toString());
+        response.setHeader("Location", ENDPOINT + "/" + reference.getId().toString());
     }
 
-    @GetMapping(GET_ENDPOINT)
-    public String getAll() {
-        return toResponse(comicStorageService.getAll());
-    }
-
-    @GetMapping(GET_ENDPOINT + "/{id}")
-    public String get(@PathVariable String id) {
-        return "";
+    @GetMapping(ENDPOINT + "/{id}")
+    public byte[] get(@PathVariable String id) throws IOException {
+        return toResponse(comicStorageService.get(UUID.fromString(id)));
     }
 
     @ExceptionHandler(MultipartException.class)
@@ -53,15 +50,12 @@ public class ComicController {
     public void handleBadFile() {
     }
 
-    private String toResponse(Set<Comic> comics) {
-        String allTitles = "[";
-        for (var comic : comics) {
-            allTitles = allTitles + ("{name: \"" + comic.getTitle() + "\"}\n");
-        }
-        return allTitles + "]";
+    private byte[] toResponse(Comic comic) {
+        return comic.getBytes();
     }
 
-    private Comic toComic(MultipartFile file) {
-        return new Comic(file.getResource().getFilename());
+    private Comic toComic(MultipartFile file) throws IOException {
+        return new Comic(file.getResource().getFilename(), file.getBytes());
+
     }
 }

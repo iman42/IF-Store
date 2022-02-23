@@ -7,4 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Comic {
     private final String title;
+    private final byte[] bytes;
 }

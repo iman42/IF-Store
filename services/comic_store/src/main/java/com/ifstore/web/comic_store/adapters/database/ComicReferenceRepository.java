@@ -14,18 +14,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ComicRepository {
+public class ComicReferenceRepository {
     @Autowired
     private ComicJpaRepository jpaRepo;
 
-    public ComicReference saveTitle(Comic comic) {
+    public ComicReference createAndSaveReference(Comic comic) {
         UUID id = UUID.randomUUID();
         var record = new ComicJpaRecord(id, comic.getTitle(), "", "");
         jpaRepo.save(record);
-        return new ComicReference(id);
+        return new ComicReference(id, comic.getTitle());
     }
 
-    public Set<Comic> getAll() {
-        return jpaRepo.findAll().stream().map((record) -> new Comic(record.getTitle())).collect(toSet());
+    public Set<ComicReference> getAll() {
+        return jpaRepo.findAll().stream().map((record) -> toReference(record))
+                .collect(toSet());
+    }
+
+    private ComicReference toReference(ComicJpaRecord record) {
+        return new ComicReference(record.getId(), record.getTitle());
+    }
+
+    public ComicReference get(UUID id) {
+        return toReference(jpaRepo.findById(id).get());
     }
 }

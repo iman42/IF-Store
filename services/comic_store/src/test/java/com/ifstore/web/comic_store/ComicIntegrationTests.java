@@ -39,15 +39,14 @@ public class ComicIntegrationTests {
                 MockMvcResultMatchers.content().string("[{name: \"" + file.getOriginalFilename() + "\"}\n]"));
     }
 
-    // TODO: we're doing this next
-    // @Test
-    // public void canRoundTripComicContent() throws Exception {
-    // mockMvc.perform(postRequest).andDo((response) -> {
-    // var getUrl = response.getResponse().getHeader("Location");
-    // mockMvc.perform(MockMvcRequestBuilders.get(getUrl))
-    // .andExpect(MockMvcResultMatchers.content().bytes(CONTENT));
-    // });
-    // }
+    @Test
+    public void canRoundTripComicContent() throws Exception {
+        mockMvc.perform(postRequest).andDo((response) -> {
+            var getUrl = response.getResponse().getHeader("Location");
+            mockMvc.perform(MockMvcRequestBuilders.get(getUrl))
+                    .andExpect(MockMvcResultMatchers.content().bytes(CONTENT));
+        });
+    }
 
     @Nested
     class GivenNoFileInPostRequest {
