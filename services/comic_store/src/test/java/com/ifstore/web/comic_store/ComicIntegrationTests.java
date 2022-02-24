@@ -34,9 +34,10 @@ public class ComicIntegrationTests {
 
     @Test
     public void canRoundTripComicName() throws Exception {
-        mockMvc.perform(postRequest);
+        String id = mockMvc.perform(postRequest).andReturn().getResponse().getContentAsString();
         mockMvc.perform(getAllComicsRequest).andExpect(
-                MockMvcResultMatchers.content().string("[{name: \"" + file.getOriginalFilename() + "\"}\n]"));
+                MockMvcResultMatchers.content()
+                        .string("[{\"id\":" + id + ",\"title\":\"" + file.getOriginalFilename() + "\"}]"));
     }
 
     @Test
