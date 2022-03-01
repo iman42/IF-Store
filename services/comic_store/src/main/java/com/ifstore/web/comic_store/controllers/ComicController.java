@@ -1,6 +1,7 @@
 package com.ifstore.web.comic_store.controllers;
 
 import java.io.IOException;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
@@ -34,10 +35,16 @@ public class ComicController {
                                                                               // vulnerability).
     @PostMapping(ENDPOINT)
     @ResponseStatus(HttpStatus.CREATED)
-    public void upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
+    public UUID upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
         Comic comic = toComic(file);
         ComicReference reference = comicStorageService.storeComic(comic);
         response.setHeader("Location", ENDPOINT + "/" + reference.getId().toString());
+        return reference.getId();
+    }
+
+    @GetMapping(ENDPOINT)
+    public Set<ComicReference> get() {
+        return comicStorageService.getAll();
     }
 
     @GetMapping(ENDPOINT + "/{id}")

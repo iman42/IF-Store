@@ -1,6 +1,7 @@
 package com.ifstore.web.comic_store.services;
 
 import java.io.IOException;
+import java.util.Set;
 import java.util.UUID;
 
 import com.ifstore.web.comic_store.adapters.database.ComicReferenceRepository;
@@ -32,5 +33,9 @@ public class ComicStorageService {
     public Comic get(UUID id) throws IOException {
         var ref = referenceRepository.get(id);
         return comicRepository.get(ref);
+    }
+
+    public Set<ComicReference> getAll() {
+        return referenceRepository.getAll();
     }
 }
