@@ -16,7 +16,8 @@ function! RunFrontendTest(path) abort
     " copy test description to @a
     norm 0f"l"ayi"
 
-    execute "terminal source ~/.zshrc && cd services/frontend && nvm install && node_modules/.bin/jest " . a:path . " -t \"" . @a . "\""
+    execute "terminal source ~/.zshrc && cd services/frontend && nvm install && node_modules/.bin/jest --watch " . a:path . " -t \"" . @a . "\""
+    execute "f TEST"
 endfunction
 
 function! RunComicStoreTest(path) abort

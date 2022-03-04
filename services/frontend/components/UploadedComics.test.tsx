@@ -2,14 +2,6 @@ import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
 import { UploadedComics } from "./UploadedComics";
 
-const getFakeFile = (content: string, type: string, name: string): File => {
-    const blob: any = new Blob([content], { type });
-    blob["lastModifiedDate"] = "";
-    blob["name"] = name;
-    return blob as File;
-};
-
-
 describe( "given: comic A and comic B are uploaded", () => {
     beforeEach(() => {
         fetchMock.mockResponseOnce(JSON.stringify(
@@ -19,11 +11,22 @@ describe( "given: comic A and comic B are uploaded", () => {
             ]
         ));
     }); 
-
-    test("should show comic titles", () => {
-        render(<UploadedComics />);
-    
-        waitFor(() =>  expect(screen.getByText("ComicA, ComicB")).toBeVisible());
+    afterEach(() => {
+        fetchMock.resetMocks();
     });
 
+    test("should show comic titles", async () => {
+        render(<UploadedComics />);
+    
+        await waitFor(() =>  expect(screen.getByText("ComicA")).toBeVisible());
+    });
+
+    test("should make the right request", async () => {
+        render(<UploadedComics />);
+
+        await waitFor(() => {
+            expect(fetchMock.mock.calls).toHaveLength(1);
+            expect(fetchMock.mock.calls[0]).toEqual(["http://localhost:8080/comics"]);
+        });
+    });
 });
