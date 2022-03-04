@@ -1,4 +1,4 @@
-FROM adoptopenjdk:11-jdk AS build
+FROM eclipse-temurin:17-jdk AS build
 
 RUN mkdir -p /app
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN ./mvnw dependency:go-offline
 COPY . /app
 RUN ./mvnw install
 
-FROM adoptopenjdk:11-jre AS run
+FROM eclipse-temurin:17-jre AS run
 
 # Copy .jar from other container
 RUN mkdir -p /app
