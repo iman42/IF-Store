@@ -7,7 +7,13 @@ export function UploadedComics(): JSX.Element {
     useEffect(() => {
         fetch("http://localhost:8080/comics").then(result => {
             result.json().then(json => {
-                setComics(json.map((x: {id: string; title: string;}) => (<li key={x.id}>{x.title}</li>)));
+                setComics(
+                    json.map(
+                        (element: {id: string; title: string;}) => (
+                            <li key={element.id}>{element.title}</li>
+                        )
+                    )
+                );
             });
         });
     }, []);
