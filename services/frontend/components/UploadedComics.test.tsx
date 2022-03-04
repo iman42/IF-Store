@@ -1,8 +1,8 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 import React from "react";
-import { UploadedComics } from "./UploadedComics";
+import {UploadedComics} from "./UploadedComics";
 
-describe( "given: comic A and comic B are uploaded", () => {
+describe("given: comic A and comic B are uploaded", () => {
     beforeEach(() => {
         fetchMock.mockResponseOnce(JSON.stringify(
             [
@@ -10,15 +10,17 @@ describe( "given: comic A and comic B are uploaded", () => {
                 {id: "ComicB-ID", title: "ComicB"}
             ]
         ));
-    }); 
+    });
     afterEach(() => {
         fetchMock.resetMocks();
     });
 
     test("should show comic titles", async () => {
         render(<UploadedComics />);
-    
-        await waitFor(() =>  expect(screen.getByText("ComicA")).toBeVisible());
+
+        await waitFor(() => {
+            expect(screen.getByText("ComicA, ComicB")).toBeVisible();
+        });
     });
 
     test("should make the right request", async () => {

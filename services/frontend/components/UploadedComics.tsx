@@ -7,7 +7,7 @@ export function UploadedComics(): JSX.Element {
     useEffect(() => {
         fetch("http://localhost:8080/comics").then(result => {
             result.json().then(json => {
-                setComics(json[0].title);
+                setComics(json.map(x => x.title).join(", "));
             });
         });
     }, []);
