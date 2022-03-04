@@ -19,7 +19,8 @@ describe("given: comic A and comic B are uploaded", () => {
         render(<UploadedComics />);
 
         await waitFor(() => {
-            expect(screen.getByText("ComicA, ComicB")).toBeVisible();
+            expect(screen.getByText("ComicA")).toBeVisible();
+            expect(screen.getByText("ComicB")).toBeVisible();
         });
     });
 
