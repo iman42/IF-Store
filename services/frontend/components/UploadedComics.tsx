@@ -1,21 +1,27 @@
 import React, { useEffect, useState } from "react";
 
-export function UploadedComics() {
+export function UploadedComics(): JSX.Element {
 
-    const [comics, setComics] = useState("Loading...");
+    const [comics, setComics] = useState([<li key="loading">Loading...</li>]);
 
     useEffect(() => {
-        fetch("google.com").then(result => {
-            result.text().then(text => {
-                setComics(text);
+        fetch("http://localhost:8080/comics").then(result => {
+            result.json().then(json => {
+                setComics(
+                    json.map(
+                        (element: {id: string; title: string;}) => (
+                            <li key={element.id}>{element.title}</li>
+                        )
+                    )
+                );
             });
         });
     }, []);
 
     return (
         <div>
-            <span>Uploaded Comics:</span>
-            <span>{comics}</span>
+            <h3>Uploaded Comics:</h3>
+            <ul>{comics}</ul>
         </div>
     );
 }

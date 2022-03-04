@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.MultipartFile;
 
+@CrossOrigin(originPatterns = "http://localhost:*", allowedHeaders = "*") // [FUTURE] make not bad (xss vulnerability).
 @RestController
 public class ComicController {
 
@@ -31,8 +32,6 @@ public class ComicController {
 
     final String ENDPOINT = "/comics";
 
-    @CrossOrigin(originPatterns = "http://localhost:*", allowedHeaders = "*") // [FUTURE] make not bad (xss
-                                                                              // vulnerability).
     @PostMapping(ENDPOINT)
     @ResponseStatus(HttpStatus.CREATED)
     public UUID upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
