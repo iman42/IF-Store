@@ -17,10 +17,4 @@
     "python.formatting.provider": "black",
     "hediet.vscode-drawio.theme": "atlas",
     "java.configuration.updateBuildConfiguration": "automatic",
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
 }
