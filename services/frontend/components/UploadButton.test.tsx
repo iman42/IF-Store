@@ -4,6 +4,7 @@ import React from "react";
 import UploadButton from "./UploadButton";
 
 const getFakeFile = (content: string, type: string, name: string): File => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const blob: any = new Blob([content], { type });
     blob["lastModifiedDate"] = "";
     blob["name"] = name;

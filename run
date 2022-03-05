@@ -37,5 +37,6 @@ failed_services_count=$(echo "${failed_services}" | grep . | wc -l)
 
 if [ $failed_services_count -ne 0 ]; then
     printf "${failed_services}"
+    echo "Tests failed."
     exit 1
 fi

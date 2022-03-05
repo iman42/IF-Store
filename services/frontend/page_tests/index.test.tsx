@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import Home from "..";
+import Home from "../pages";
 
 test("should show file upload button", () => {
     render(<Home />);

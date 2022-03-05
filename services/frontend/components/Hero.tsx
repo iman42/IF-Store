@@ -1,7 +1,8 @@
-import styles from './Hero.module.css';
+import React from "react";
+import styles from "./Hero.module.css";
 
-const Hero = () =>     (<h1 className={styles.title}>
-IF Store
+const Hero = () => (<h1 className={styles.title}>
+    IF Store
 </h1>);
 
 
