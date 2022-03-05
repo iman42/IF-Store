@@ -34,6 +34,16 @@ From root directory, run:
 ./build
 ```
 
+## To test and build:
+
+This is a good idea before pushing.
+
+From root directory, run:
+
+```bash
+./check
+```
+
 ## To run in development mode:
 
 From root directory, run:
