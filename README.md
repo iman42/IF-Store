@@ -13,48 +13,19 @@ This repo contains a bunch of services which, together, run the IF Store comic b
 - [Docker Compose](https://docs.docker.com/compose/install/), usually included in "Docker Desktop" for Windows and Mac, otherwise needs to be installed separately.
 - A running docker engine (start the docker desktop program)
 
-## To test:
+## Helpful Commands:
 
-From root directory, run:
+From the root directory of this repo, run:
 
-```bash
-./run test
-```
-
-## To build:
-
-This command will build prod-ready docker images tagged with the
-current date and the current commit hash.
-
-The image files will be located according to your docker configuration.
-
-From root directory, run:
-
-```bash
-./build
-```
-
-## To test and build:
-
-This is a good idea before pushing.
-
-From root directory, run:
-
-```bash
-./check
-```
-
-## To run in development mode:
-
-From root directory, run:
-
-```bash
-./run dev
-```
-
-This will run all the services in development-mode, and connect them to each other. To hit the frontend from the browser, visit [http://localhost:3000/](http://localhost:3000/).
-
-You can also run services individually, outside of docker. See the `README.md` in the service you're trying to run.
+1. `./run test`
+   - Runs all tests
+2. `./build`
+   - Builds production-ready, tagged, docker images
+3. `./check`
+   - Equivalent `./build && ./run test`, good idea to run before pushing
+4. `./run dev`
+   - Runs all services in development-mode, and connects them. To hit the frontend from the browser, visit [http://localhost:3000/](http://localhost:3000/).
+   - You can also run services individually, outside of docker. See the `README.md` in the service you're trying to run.
 
 ## To configure editor:
 
