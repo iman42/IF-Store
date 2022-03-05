@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.adapters.filesystem.ComicRepository;
 import com.ifstore.web.comic_store.controllers.ComicStorageServiceInterface;
 import com.ifstore.web.comic_store.Comic;
 import com.ifstore.web.comic_store.ComicReference;
@@ -17,7 +16,7 @@ public class ComicStorageService implements ComicStorageServiceInterface{
     @Autowired
     private ComicReferenceRepositoryInterface referenceRepository;
     @Autowired
-    private ComicRepository comicRepository;
+    private ComicRepositoryInterface comicRepository;
 
     public ComicReference storeComic(Comic comic) throws IOException {
         ComicReference ref = referenceRepository.createAndSaveReference(comic);

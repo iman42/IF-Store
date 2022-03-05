@@ -6,11 +6,12 @@ import java.nio.file.Path;
 
 import com.ifstore.web.comic_store.Comic;
 import com.ifstore.web.comic_store.ComicReference;
+import com.ifstore.web.comic_store.services.ComicRepositoryInterface;
 
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ComicRepository {
+public class ComicRepository implements ComicRepositoryInterface{
 
     private Path toFilePath(ComicReference ref) {
         return (Path.of("/tmp/" + ref.getId() + ".blob"));
