@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.adapters.database.ComicReferenceRepository;
 import com.ifstore.web.comic_store.adapters.filesystem.ComicRepository;
 import com.ifstore.web.comic_store.controllers.ComicStorageServiceInterface;
 import com.ifstore.web.comic_store.Comic;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ComicStorageService implements ComicStorageServiceInterface{
     @Autowired
-    private ComicReferenceRepository referenceRepository;
+    private ComicReferenceRepositoryInterface referenceRepository;
     @Autowired
     private ComicRepository comicRepository;
 
