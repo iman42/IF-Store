@@ -17,19 +17,16 @@ This repo contains a bunch of services which, together, run the IF Store comic b
 
 From the root directory of this repo, run:
 
-1. `./run test`
-   - Runs all tests
-2. `./build`
-   - Builds production-ready, tagged, docker images
-3. `./check`
-   - Equivalent `./build && ./run test`, good idea to run before pushing
+1. `./check`: Equivalent `./build && ./run test`, good idea to run before pushing
+2. `./run test`: Runs all tests
+3. `./build`: Builds production-ready, tagged docker images
 4. `./run dev`
    - Runs all services in development-mode, and connects them. To hit the frontend from the browser, visit [http://localhost:3000/](http://localhost:3000/).
    - You can also run services individually, outside of docker. See the `README.md` in the service you're trying to run.
 
 ## To configure editor:
 
-This is treated as a monorepo. A default configuration and some recommended extensions have been specified for the [VSCode](https://code.visualstudio.com/) code editor.
+This is a monorepo. A default configuration and some recommended extensions have been specified for the [VSCode](https://code.visualstudio.com/) code editor.
 
 To see the recommended extensions:
 
