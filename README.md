@@ -15,14 +15,12 @@ This repo contains a bunch of services which, together, run the IF Store comic b
 
 ## Helpful Commands:
 
-From the root directory of this repo, run:
+A script will help you run or test the project.
+To learn how to use the script, from the root directory of this repo, run:
 
-1. `./check`: Equivalent `./build && ./run test`, good idea to run before pushing
-2. `./run test`: Runs all tests
-3. `./build`: Builds production-ready, tagged docker images
-4. `./run dev`
-   - Runs all services in development-mode, and connects them. To hit the frontend from the browser, visit [http://localhost:3000/](http://localhost:3000/).
-   - You can also run services individually, outside of docker. See the `README.md` in the service you're trying to run.
+```bash
+./run
+```
 
 ## To configure editor:
 

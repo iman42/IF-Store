@@ -3,10 +3,22 @@
 if [ $# -eq 0 ]
   then
     echo "USAGE:"
-    echo "./run (dev|prod|test) [string_to_match]"
+    echo "./run (check|dev|build|test)"
+    echo ""
+    echo ""
+    echo "check - equivanent to build, then test"
+    echo "        good idea before pushing"
+    echo ""
+    echo "build - builds tagged, prod-ready docker images"
+    echo ""
+    echo "test - runs tests"
+    echo ""
+    echo "dev - runs services in dev mode"
+    echo "        the frontend can be hit from http://localhost:3000"
+    echo ""
     echo ""
     echo "EXAMPLES:"
-    echo "./run prod"
+    echo "./run build"
     echo "./run test comic_store"
     exit 1
 fi
@@ -26,19 +38,33 @@ commit_hash=$(git rev-parse HEAD)
 date=$(date -u +%F)
 export TAG=${date}.${commit_hash}
 
-docker_compose_files=(docker-compose/docker-compose.${services}.${type}.yml)
-as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
+if [ "$type" = "build" ] || [ "$type" = "check" ]
+    then
+        docker_compose_files=(docker-compose/docker-compose.*.prod.yml)
+        as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
-exec 5>&1
-output=$(docker-compose $as_arguments up --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes --build | tee >(cat - >&5))
+        docker-compose $as_arguments build --pull
+fi
+if [ "$type" = "test" ] || [ "$type" = "dev" ] || [ "$type" = "check" ]
+    then
+        docker_compose_files=(docker-compose/docker-compose.${services}.${type}.yml)
+        if [ "$type" = "check" ]
+            then
+                docker_compose_files=(docker-compose/docker-compose.${services}.test.yml)
+        fi
+        as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
-failed_services=$(echo "${output}" | grep "exited with code" | grep -v "exited with code 0")
-failed_services_count=$(echo "${failed_services}" | grep . | wc -l)
+        exec 5>&1
+        output=$(docker-compose $as_arguments up --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes --build | tee >(cat - >&5))
 
-if [ $failed_services_count -ne 0 ]; then
-    printf "${failed_services}"
-    echo ""
-    echo ""
-    echo "Tests failed."
-    exit 1
+        failed_services=$(echo "${output}" | grep "exited with code" | grep -v "exited with code 0")
+        failed_services_count=$(echo "${failed_services}" | grep . | wc -l)
+
+        if [ $failed_services_count -ne 0 ]; then
+            printf "${failed_services}"
+            echo ""
+            echo ""
+            echo "Tests failed."
+            exit 1
+        fi
 fi

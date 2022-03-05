@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build
-        run: ./build
+        run: ./run build
       - name: Publish Images
         run: echo '[TODO] Publish the built images to a docker registry'
   deploy:
