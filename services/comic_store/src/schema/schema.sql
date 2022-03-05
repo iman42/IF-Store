@@ -1,5 +1,5 @@
 Create table "comics" (
-    id uuid,
+    id text,
     title text,
     comic_path text,
     cover_path text

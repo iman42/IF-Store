@@ -20,7 +20,7 @@ public class ComicReferenceRepository {
 
     public ComicReference createAndSaveReference(Comic comic) {
         UUID id = UUID.randomUUID();
-        var record = new ComicJpaRecord(id, comic.getTitle(), "", "");
+        var record = new ComicJpaRecord(id.toString(), comic.getTitle(), "", "");
         jpaRepo.save(record);
         return new ComicReference(id, comic.getTitle());
     }
@@ -31,10 +31,10 @@ public class ComicReferenceRepository {
     }
 
     private ComicReference toReference(ComicJpaRecord record) {
-        return new ComicReference(record.getId(), record.getTitle());
+        return new ComicReference(UUID.fromString(record.getId()), record.getTitle());
     }
 
     public ComicReference get(UUID id) {
-        return toReference(jpaRepo.findById(id).get());
+        return toReference(jpaRepo.findById(id.toString()).get());
     }
 }
