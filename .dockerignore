@@ -1,0 +1,7 @@
+# This is for our static tests. It speeds them up
+# because these files won't need to be copied inside the
+# docker container
+
+**/node_modules
+.git
+/architecture
