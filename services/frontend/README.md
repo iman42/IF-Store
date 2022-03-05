@@ -1,23 +1,25 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Dependencies
+
 - [NVM](https://github.com/nvm-sh/nvm)
-    - This will install [NodeJS](https://nodejs.org/) and [NPM](https://www.npmjs.com/)
+  - This will install [NodeJS](https://nodejs.org/) and [NPM](https://www.npmjs.com/)
 
 **To install all dependencies:**
+
 ```bash
 nvm install
 nvm use
 npm ci
 ```
 
-After this, run `npm use` when opening a new terminal.
-
 ## To Run
 
 To run in development-mode, execute the [npm script](https://docs.npmjs.com/cli/v6/using-npm/scripts) `dev`. Like this:
 
 ```bash
+nvm install
+nvm use
 npm run dev
 ```
 
@@ -26,17 +28,20 @@ The results are served at [http://localhost:3000](http://localhost:3000) and "ho
 ## To Run Tests
 
 ```bash
+nvm install
+nvm use
 npm test
 ```
 
 ## To Build and Deploy
 
 ```bash
+nvm install
+nvm use
 npm run build
 npm start
 ```
 
 See details [here](https://nextjs.org/docs/deployment#nodejs-server).
->`next build` builds the production application in the .next folder. After building, `next start` starts a Node.js server
 
-## Code Organization
+> `next build` builds the production application in the .next folder. After building, `next start` starts a Node.js server
