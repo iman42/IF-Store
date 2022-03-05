@@ -7,8 +7,8 @@ import java.util.UUID;
 
 import com.ifstore.web.comic_store.adapters.database.jpa.ComicJpaRecord;
 import com.ifstore.web.comic_store.adapters.database.jpa.ComicJpaRepository;
-import com.ifstore.web.comic_store.domain.Comic;
-import com.ifstore.web.comic_store.domain.ComicReference;
+import com.ifstore.web.comic_store.Comic;
+import com.ifstore.web.comic_store.ComicReference;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

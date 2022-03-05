@@ -1,4 +1,4 @@
-package com.ifstore.web.comic_store.domain;
+package com.ifstore.web.comic_store;
 
 import java.util.UUID;
 

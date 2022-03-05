@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import com.ifstore.web.comic_store.domain.Comic;
-import com.ifstore.web.comic_store.domain.ComicReference;
+import com.ifstore.web.comic_store.Comic;
+import com.ifstore.web.comic_store.ComicReference;
 
 import org.springframework.stereotype.Repository;
 

@@ -6,8 +6,8 @@ import java.util.UUID;
 
 import com.ifstore.web.comic_store.adapters.database.ComicReferenceRepository;
 import com.ifstore.web.comic_store.adapters.filesystem.ComicRepository;
-import com.ifstore.web.comic_store.domain.Comic;
-import com.ifstore.web.comic_store.domain.ComicReference;
+import com.ifstore.web.comic_store.Comic;
+import com.ifstore.web.comic_store.ComicReference;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
