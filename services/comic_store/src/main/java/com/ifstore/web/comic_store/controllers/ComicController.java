@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ifstore.web.comic_store.Comic;
 import com.ifstore.web.comic_store.ComicReference;
-import com.ifstore.web.comic_store.services.ComicStorageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -31,7 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ComicController {
 
     @Autowired
-    private ComicStorageService comicStorageService;
+    private ComicStorageServiceInterface comicStorageService;
 
     final String ENDPOINT = "/comics";
 
