@@ -42,11 +42,9 @@ public class ComicIntegrationTests {
 
     @Test
     public void canRoundTripComicContent() throws Exception {
-        mockMvc.perform(postRequest).andDo((response) -> {
-            var getUrl = response.getResponse().getHeader("Location");
-            mockMvc.perform(MockMvcRequestBuilders.get(getUrl))
-                    .andExpect(MockMvcResultMatchers.content().bytes(CONTENT));
-        });
+        var getUrl = mockMvc.perform(postRequest).andReturn().getResponse().getHeader("Location");
+        mockMvc.perform(MockMvcRequestBuilders.get(getUrl))
+                .andExpect(MockMvcResultMatchers.content().bytes(CONTENT));
     }
 
     @Nested

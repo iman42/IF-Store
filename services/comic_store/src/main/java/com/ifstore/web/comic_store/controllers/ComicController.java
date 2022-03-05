@@ -11,7 +11,10 @@ import com.ifstore.web.comic_store.domain.ComicReference;
 import com.ifstore.web.comic_store.services.ComicStorageService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,7 +50,7 @@ public class ComicController {
     }
 
     @GetMapping(ENDPOINT + "/{id}")
-    public byte[] get(@PathVariable String id) throws IOException {
+    public ResponseEntity<ByteArrayResource> get(@PathVariable String id) throws IOException {
         return toResponse(comicStorageService.get(UUID.fromString(id)));
     }
 
@@ -56,8 +59,10 @@ public class ComicController {
     public void handleBadFile() {
     }
 
-    private byte[] toResponse(Comic comic) {
-        return comic.getBytes();
+    private ResponseEntity<ByteArrayResource> toResponse(Comic comic) {
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .body(new ByteArrayResource(comic.getBytes()));
     }
 
     private Comic toComic(MultipartFile file) throws IOException {

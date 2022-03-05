@@ -21,7 +21,8 @@ public class ComicRepository {
     }
 
     public Comic get(ComicReference byReference) throws IOException {
-        return new Comic(byReference.getTitle(), Files.readAllBytes(toFilePath(byReference)));
-
+        return new Comic(
+                byReference.getTitle(),
+                Files.readAllBytes(toFilePath(byReference)));
     }
 }

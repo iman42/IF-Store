@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,9 +16,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Getter
 @Entity
-@Table(name="comics")
+@Table(name = "comics")
 public class ComicJpaRecord {
     @Id
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
 
     private String title;
