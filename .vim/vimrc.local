@@ -1,12 +1,14 @@
 function! RunFrontendTestFile() abort
     let path = expand('%:p')
     execute "terminal source ~/.zshrc && cd services/frontend && nvm install && node_modules/.bin/jest " . path
+    execute "f TEST - ".path
 endfunction
 
 function! RunComicStoreTestFile() abort
     let file = expand('%:t:r')
 
     execute "terminal source ~/.zshrc && cd services/comic_store && ./mvnw clean &&  ./mvnw -Dtest=" . file . "\\* test"
+    execute "f TEST - ".file
 endfunction
 
 function! RunFrontendTest(path) abort
@@ -17,7 +19,7 @@ function! RunFrontendTest(path) abort
     norm 0f"l"ayi"
 
     execute "terminal source ~/.zshrc && cd services/frontend && nvm install && node_modules/.bin/jest --watch " . a:path . " -t \"" . @a . "\""
-    execute "f TEST"
+    execute "f TEST - ".@a
 endfunction
 
 function! RunComicStoreTest(path) abort
@@ -30,6 +32,7 @@ function! RunComicStoreTest(path) abort
     norm 0f(T "ayt(
 
     execute "terminal source ~/.zshrc && cd services/comic_store && ./mvnw clean &&  ./mvnw -Dtest=" . file . "\\*\\#" . @a . " test"
+    execute "f TEST - ".@a
 endfunction
 
 function! RunTestFile() abort
@@ -70,5 +73,6 @@ function! Run() abort
 endfunction
 
 command! FILETEST call RunTestFile()
+command! FTEST call RunTestFile()
 command! TEST call RunTest()
 command! RUN call Run()
