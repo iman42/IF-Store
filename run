@@ -15,23 +15,12 @@ if [ $# -eq 0 ]
     echo ""
     echo "dev - runs services in dev mode"
     echo "        the frontend can be hit from http://localhost:3000"
-    echo ""
-    echo ""
-    echo "EXAMPLES:"
-    echo "./run build"
-    echo "./run test comic_store"
     exit 1
 fi
 
 if [ $# -eq 1 ]
     then
         type=${1}
-        services='*'
-fi
-if [ $# -eq 2 ]
-    then
-        type=${1}
-        services="*${2}*"
 fi
 
 commit_hash=$(git rev-parse HEAD)
@@ -47,10 +36,10 @@ if [ "$type" = "build" ] || [ "$type" = "check" ]
 fi
 if [ "$type" = "test" ] || [ "$type" = "dev" ] || [ "$type" = "check" ]
     then
-        docker_compose_files=(docker-compose/docker-compose.${services}.${type}.yml)
+        docker_compose_files=(docker-compose/docker-compose.*.${type}.yml)
         if [ "$type" = "check" ]
             then
-                docker_compose_files=(docker-compose/docker-compose.${services}.test.yml)
+                docker_compose_files=(docker-compose/docker-compose.*.test.yml)
         fi
         as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
