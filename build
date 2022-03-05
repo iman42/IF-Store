@@ -7,5 +7,4 @@ export TAG=${date}.${commit_hash}
 docker_compose_files=(docker-compose/docker-compose.*.prod.yml)
 as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
-exec 5>&1
-output=$(docker-compose $as_arguments build --pull | tee >(cat - >&5))
+docker-compose $as_arguments build --pull
