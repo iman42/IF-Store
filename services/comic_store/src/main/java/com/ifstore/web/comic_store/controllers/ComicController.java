@@ -37,8 +37,11 @@ public class ComicController {
     @PostMapping(ENDPOINT)
     @ResponseStatus(HttpStatus.CREATED)
     public UUID upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
-        Comic comic = toComic(file);
-        ComicReference reference = comicStorageService.save(comic);
+        var comic = toComic(file);
+        var reference = new ComicReference(UUID.randomUUID(), comic.getTitle());
+
+        comicStorageService.save(comic, reference);
+
         response.setHeader("Location", ENDPOINT + "/" + reference.getId().toString());
         return reference.getId();
     }
