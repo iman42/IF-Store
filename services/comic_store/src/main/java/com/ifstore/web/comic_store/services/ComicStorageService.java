@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.Comic;
-import com.ifstore.web.comic_store.ComicReference;
+import com.ifstore.web.comic_store.Content;
+import com.ifstore.web.comic_store.Metadata;
 import com.ifstore.web.comic_store.controllers.ComicStorageServiceInterface;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,24 +16,24 @@ import lombok.SneakyThrows;
 @Service
 public class ComicStorageService implements ComicStorageServiceInterface {
     @Autowired
-    private ComicReferenceRepositoryInterface referenceRepository;
+    private MetadataRepositoryInterface metadataRepository;
     @Autowired
-    private ComicRepositoryInterface comicRepository;
+    private ContentRepositoryInterface contentRepository;
 
     @SneakyThrows
-    public void save(Comic comic, ComicReference reference) throws IOException {
-        referenceRepository.save(reference);
-        comicRepository.save(comic, reference);
+    public void save(Content comic, Metadata metadata) throws IOException {
+        metadataRepository.save(metadata);
+        contentRepository.save(comic, metadata);
     }
 
     @SneakyThrows
-    public Comic get(UUID id) throws IOException {
-        var ref = referenceRepository.get(id);
-        return comicRepository.get(ref);
+    public Content get(UUID id) throws IOException {
+        var metadata = metadataRepository.get(id);
+        return contentRepository.get(metadata);
     }
 
     @SneakyThrows
-    public Set<ComicReference> getAll() {
-        return referenceRepository.getAll();
+    public Set<Metadata> getAll() {
+        return metadataRepository.getAll();
     }
 }

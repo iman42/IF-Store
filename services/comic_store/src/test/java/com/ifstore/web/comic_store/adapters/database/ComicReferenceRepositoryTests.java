@@ -6,10 +6,10 @@ import static org.mockito.Mockito.when;
 
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.ComicReference;
-import com.ifstore.web.comic_store.adapters.database.jpa.ComicJpaRepository;
-import com.ifstore.web.comic_store.services.ComicReferenceRepositoryInterface.UnableToGet;
-import com.ifstore.web.comic_store.services.ComicReferenceRepositoryInterface.UnableToSave;
+import com.ifstore.web.comic_store.Metadata;
+import com.ifstore.web.comic_store.adapters.database.jpa.MetadataJpaRepository;
+import com.ifstore.web.comic_store.services.MetadataRepositoryInterface.UnableToGet;
+import com.ifstore.web.comic_store.services.MetadataRepositoryInterface.UnableToSave;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,26 +20,26 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 @DataJpaTest
 public class ComicReferenceRepositoryTests {
     @Mock
-    public ComicJpaRepository jpaRepo;
+    public MetadataJpaRepository jpaRepo;
 
-    public ComicReferenceRepository repo;
+    public MetadataRepository repo;
 
     @BeforeEach
     public void setUp() {
-        repo = new ComicReferenceRepository(jpaRepo);
+        repo = new MetadataRepository(jpaRepo);
     }
 
     @Test
     public void goodErrorWhenFailsToSave() {
         RuntimeException causeOfFailure = new RuntimeException(":(");
         when(jpaRepo.save(Mockito.any())).thenThrow(causeOfFailure);
-        var comic = new ComicReference(UUID.randomUUID(), "Random Title");
+        var comic = new Metadata(UUID.randomUUID(), "Random Title");
 
         var thrown = assertThrows(UnableToSave.class, () -> {
             repo.save(comic);
         });
 
-        assertEquals(thrown.getMessage(), "Unable to save comic reference.");
+        assertEquals(thrown.getMessage(), "Unable to save comic metadata.");
         assertEquals(thrown.getCause(), causeOfFailure);
     }
 
@@ -52,7 +52,7 @@ public class ComicReferenceRepositoryTests {
             repo.getAll();
         });
 
-        assertEquals(thrown.getMessage(), "Unable to fetch comic reference.");
+        assertEquals(thrown.getMessage(), "Unable to fetch comic metadata.");
         assertEquals(thrown.getCause(), causeOfFailure);
     }
 
@@ -65,7 +65,7 @@ public class ComicReferenceRepositoryTests {
             repo.get(UUID.randomUUID());
         });
 
-        assertEquals(thrown.getMessage(), "Unable to fetch comic reference.");
+        assertEquals(thrown.getMessage(), "Unable to fetch comic metadata.");
         assertEquals(thrown.getCause(), causeOfFailure);
     }
 }

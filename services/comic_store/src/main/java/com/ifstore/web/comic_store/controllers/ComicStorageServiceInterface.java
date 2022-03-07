@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.util.Set;
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.Comic;
-import com.ifstore.web.comic_store.ComicReference;
+import com.ifstore.web.comic_store.Content;
+import com.ifstore.web.comic_store.Metadata;
 
 public interface ComicStorageServiceInterface {
 
-    void save(Comic comic, ComicReference byReference) throws IOException;
+    void save(Content comic, Metadata byMetadata) throws IOException;
 
-    Set<ComicReference> getAll();
+    Set<Metadata> getAll();
 
-    Comic get(UUID fromString) throws IOException;
+    Content get(UUID fromString) throws IOException;
 
 }
