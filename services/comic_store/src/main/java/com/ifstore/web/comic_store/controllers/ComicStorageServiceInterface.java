@@ -9,11 +9,10 @@ import com.ifstore.web.comic_store.ComicReference;
 
 public interface ComicStorageServiceInterface {
 
-    ComicReference storeComic(Comic comic) throws IOException;
+    ComicReference save(Comic comic) throws IOException;
 
     Set<ComicReference> getAll();
 
     Comic get(UUID fromString) throws IOException;
 
 }
-

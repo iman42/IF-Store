@@ -21,8 +21,9 @@ public class ComicStorageService implements ComicStorageServiceInterface {
     private ComicRepositoryInterface comicRepository;
 
     @SneakyThrows
-    public ComicReference storeComic(Comic comic) throws IOException {
-        ComicReference ref = referenceRepository.createAndSaveReference(comic);
+    public ComicReference save(Comic comic) throws IOException {
+        var ref = new ComicReference(UUID.randomUUID(), comic.getTitle());
+        referenceRepository.save(ref);
         comicRepository.save(comic, ref);
         return ref;
     }

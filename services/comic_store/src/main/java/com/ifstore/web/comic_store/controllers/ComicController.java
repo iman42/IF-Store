@@ -38,7 +38,7 @@ public class ComicController {
     @ResponseStatus(HttpStatus.CREATED)
     public UUID upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
         Comic comic = toComic(file);
-        ComicReference reference = comicStorageService.storeComic(comic);
+        ComicReference reference = comicStorageService.save(comic);
         response.setHeader("Location", ENDPOINT + "/" + reference.getId().toString());
         return reference.getId();
     }

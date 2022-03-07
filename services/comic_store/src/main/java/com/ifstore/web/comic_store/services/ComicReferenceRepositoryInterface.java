@@ -3,11 +3,10 @@ package com.ifstore.web.comic_store.services;
 import java.util.Set;
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.Comic;
 import com.ifstore.web.comic_store.ComicReference;
 
 public interface ComicReferenceRepositoryInterface {
-    ComicReference createAndSaveReference(Comic comic) throws UnableToSave;
+    void save(ComicReference reference) throws UnableToSave;
 
     ComicReference get(UUID id) throws UnableToGet;
 
@@ -15,7 +14,7 @@ public interface ComicReferenceRepositoryInterface {
 
     public class UnableToSave extends Exception {
         public UnableToSave(Throwable cause) {
-            super("Unable to create and save comic reference.", cause);
+            super("Unable to save comic reference.", cause);
         }
     }
 

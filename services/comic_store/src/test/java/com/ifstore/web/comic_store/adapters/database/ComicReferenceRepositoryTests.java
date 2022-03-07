@@ -6,7 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.Comic;
+import com.ifstore.web.comic_store.ComicReference;
 import com.ifstore.web.comic_store.adapters.database.jpa.ComicJpaRepository;
 import com.ifstore.web.comic_store.services.ComicReferenceRepositoryInterface.UnableToGet;
 import com.ifstore.web.comic_store.services.ComicReferenceRepositoryInterface.UnableToSave;
@@ -33,13 +33,13 @@ public class ComicReferenceRepositoryTests {
     public void goodErrorWhenFailsToSave() {
         RuntimeException causeOfFailure = new RuntimeException(":(");
         when(jpaRepo.save(Mockito.any())).thenThrow(causeOfFailure);
-        Comic comic = new Comic("Title", "Content".getBytes());
+        var comic = new ComicReference(UUID.randomUUID(), "Random Title");
 
         var thrown = assertThrows(UnableToSave.class, () -> {
-            repo.createAndSaveReference(comic);
+            repo.save(comic);
         });
 
-        assertEquals(thrown.getMessage(), "Unable to create and save comic reference.");
+        assertEquals(thrown.getMessage(), "Unable to save comic reference.");
         assertEquals(thrown.getCause(), causeOfFailure);
     }
 

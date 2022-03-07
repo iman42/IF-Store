@@ -5,7 +5,6 @@ import static java.util.stream.Collectors.toSet;
 import java.util.Set;
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.Comic;
 import com.ifstore.web.comic_store.ComicReference;
 import com.ifstore.web.comic_store.adapters.database.jpa.ComicJpaRecord;
 import com.ifstore.web.comic_store.adapters.database.jpa.ComicJpaRepository;
@@ -22,12 +21,10 @@ public class ComicReferenceRepository implements ComicReferenceRepositoryInterfa
     @Autowired
     private ComicJpaRepository jpaRepo;
 
-    public ComicReference createAndSaveReference(Comic comic) throws UnableToSave {
+    public void save(ComicReference reference) throws UnableToSave {
         try {
-            UUID id = UUID.randomUUID();
-            var record = new ComicJpaRecord(id.toString(), comic.getTitle(), "", "");
+            var record = new ComicJpaRecord(reference.getId().toString(), reference.getTitle(), "", "");
             jpaRepo.save(record);
-            return new ComicReference(id, comic.getTitle());
         } catch (Exception e) {
             throw new UnableToSave(e);
         }
