@@ -7,12 +7,21 @@ import com.ifstore.web.comic_store.Comic;
 import com.ifstore.web.comic_store.ComicReference;
 
 public interface ComicReferenceRepositoryInterface {
+    ComicReference createAndSaveReference(Comic comic) throws UnableToSave;
 
-    ComicReference createAndSaveReference(Comic comic);
+    ComicReference get(UUID id) throws UnableToGet;
 
-    ComicReference get(UUID id);
+    Set<ComicReference> getAll() throws UnableToGet;
 
-    Set<ComicReference> getAll();
+    public class UnableToSave extends Exception {
+        public UnableToSave(Throwable cause) {
+            super("Unable to create and save comic reference.", cause);
+        }
+    }
 
+    public class UnableToGet extends Exception {
+        public UnableToGet(Throwable cause) {
+            super("Unable to fetch comic reference.", cause);
+        }
+    }
 }
-
