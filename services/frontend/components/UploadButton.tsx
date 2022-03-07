@@ -1,14 +1,14 @@
 import Button from "@material-ui/core/Button";
 import React from "react";
+import { uploadComic } from "../adapters/ComicStoreAPIInterface";
 import styles from "./UploadButton.module.css";
-
 const UploadButton = (): JSX.Element => {
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
         if (files && files[0]) {
             const formData = new FormData();
             formData.append("file", files[0]);
-            fetch("HTTP://localhost:8080/comics", { method: "POST", body: formData });
+            uploadComic(formData);
         }
     };
 

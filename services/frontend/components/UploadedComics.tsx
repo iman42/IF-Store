@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { getAllTitles } from "../adapters/ComicStoreAPIInterface";
 
 export function UploadedComics(): JSX.Element {
 
     const [comics, setComics] = useState([<li key="loading">Loading...</li>]);
 
     useEffect(() => {
-        fetch("http://localhost:8080/comics").then(result => {
+        getAllTitles().then(result => {
             result.json().then(json => {
                 setComics(
                     json.map(
-                        (element: {id: string; title: string;}) => (
+                        (element: { id: string; title: string; }) => (
                             <li key={element.id}>{element.title}</li>
                         )
                     )
