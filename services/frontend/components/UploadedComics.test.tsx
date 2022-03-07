@@ -1,13 +1,13 @@
-import {render, screen, waitFor} from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import React from "react";
-import {UploadedComics} from "./UploadedComics";
+import { UploadedComics } from "./UploadedComics";
 
 describe("given: comic A and comic B are uploaded", () => {
     beforeEach(() => {
         fetchMock.mockResponseOnce(JSON.stringify(
             [
-                {id: "ComicA-ID", title: "ComicA"},
-                {id: "ComicB-ID", title: "ComicB"}
+                { id: "ComicA-ID", title: "ComicA" },
+                { id: "ComicB-ID", title: "ComicB" }
             ]
         ));
     });
