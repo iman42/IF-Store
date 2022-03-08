@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ifstore.web.comic_store.Content;
 import com.ifstore.web.comic_store.Metadata;
+import com.ifstore.web.comic_store.controllers.ComicStorageServiceInterface.UnableToGet;
+import com.ifstore.web.comic_store.controllers.ComicStorageServiceInterface.UnableToSave;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -36,7 +38,8 @@ public class ComicController {
 
     @PostMapping(ENDPOINT)
     @ResponseStatus(HttpStatus.CREATED)
-    public UUID upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
+    public UUID upload(@RequestParam("file") MultipartFile file, HttpServletResponse response)
+            throws UnableToSave, IOException {
         var comic = new Content(file.getBytes());
         var metadata = new Metadata(UUID.randomUUID(), file.getResource().getFilename());
 
@@ -47,12 +50,12 @@ public class ComicController {
     }
 
     @GetMapping(ENDPOINT)
-    public Set<Metadata> get() {
+    public Set<Metadata> get() throws UnableToGet {
         return comicStorageService.getAll();
     }
 
     @GetMapping(ENDPOINT + "/{id}")
-    public ResponseEntity<ByteArrayResource> get(@PathVariable String id) throws IOException {
+    public ResponseEntity<ByteArrayResource> get(@PathVariable String id) throws UnableToGet {
         return toResponse(comicStorageService.get(UUID.fromString(id)));
     }
 
