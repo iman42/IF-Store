@@ -1,6 +1,5 @@
 package com.ifstore.web.comic_store.adapters.filesystem;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -17,11 +16,19 @@ public class ContentRepository implements ContentRepositoryInterface {
         return (Path.of("/tmp/" + metadata.getId() + ".blob"));
     }
 
-    public void save(Content toSave, Metadata byMetadata) throws IOException {
-        Files.write(toFilePath(byMetadata), toSave.getBytes());
+    public void save(Content toSave, Metadata byMetadata) throws UnableToSave {
+        try {
+            Files.write(toFilePath(byMetadata), toSave.getBytes());
+        } catch (Exception e) {
+            throw new UnableToSave(e);
+        }
     }
 
-    public Content get(Metadata byMetadata) throws IOException {
-        return new Content(Files.readAllBytes(toFilePath(byMetadata)));
+    public Content get(Metadata byMetadata) throws UnableToGet {
+        try {
+            return new Content(Files.readAllBytes(toFilePath(byMetadata)));
+        } catch (Exception e) {
+            throw new UnableToGet(e);
+        }
     }
 }

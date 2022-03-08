@@ -18,7 +18,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 @DataJpaTest
-public class ComicReferenceRepositoryTests {
+public class MetadataRepositoryTests {
     @Mock
     public MetadataJpaRepository jpaRepo;
 
