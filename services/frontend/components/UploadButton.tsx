@@ -6,9 +6,14 @@ const UploadButton = (): JSX.Element => {
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const files = e.target.files;
         if (files && files[0]) {
+
+            const sFileExtension = files[0].name.split(".")[files[0].name.split(".").length - 1].toLowerCase();
             const formData = new FormData();
             formData.append("file", files[0]);
-            uploadComic(formData);
+            if (sFileExtension === "pdf")
+                uploadComic(formData);
+            else
+                window.alert("THATS NO PDF!");
         }
     };
 
