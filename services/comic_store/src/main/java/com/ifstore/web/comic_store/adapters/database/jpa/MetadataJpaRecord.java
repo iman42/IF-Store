@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @Table(name = "comics")
-public class ComicJpaRecord {
+public class MetadataJpaRecord {
     @Id
     private String id;
 

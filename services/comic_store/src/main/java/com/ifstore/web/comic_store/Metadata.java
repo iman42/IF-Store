@@ -7,7 +7,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ComicReference {
+public class Metadata {
     private final UUID id;
     private final String title;
 }

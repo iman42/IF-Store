@@ -6,8 +6,10 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.ifstore.web.comic_store.Comic;
-import com.ifstore.web.comic_store.ComicReference;
+import com.ifstore.web.comic_store.Content;
+import com.ifstore.web.comic_store.Metadata;
+import com.ifstore.web.comic_store.controllers.ComicStorageServiceInterface.UnableToGet;
+import com.ifstore.web.comic_store.controllers.ComicStorageServiceInterface.UnableToSave;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -36,20 +38,24 @@ public class ComicController {
 
     @PostMapping(ENDPOINT)
     @ResponseStatus(HttpStatus.CREATED)
-    public UUID upload(@RequestParam("file") MultipartFile file, HttpServletResponse response) throws IOException {
-        Comic comic = toComic(file);
-        ComicReference reference = comicStorageService.storeComic(comic);
-        response.setHeader("Location", ENDPOINT + "/" + reference.getId().toString());
-        return reference.getId();
+    public UUID upload(@RequestParam("file") MultipartFile file, HttpServletResponse response)
+            throws UnableToSave, IOException {
+        var comic = new Content(file.getBytes());
+        var metadata = new Metadata(UUID.randomUUID(), file.getResource().getFilename());
+
+        comicStorageService.save(comic, metadata);
+
+        response.setHeader("Location", ENDPOINT + "/" + metadata.getId().toString());
+        return metadata.getId();
     }
 
     @GetMapping(ENDPOINT)
-    public Set<ComicReference> get() {
+    public Set<Metadata> get() throws UnableToGet {
         return comicStorageService.getAll();
     }
 
     @GetMapping(ENDPOINT + "/{id}")
-    public ResponseEntity<ByteArrayResource> get(@PathVariable String id) throws IOException {
+    public ResponseEntity<ByteArrayResource> get(@PathVariable String id) throws UnableToGet {
         return toResponse(comicStorageService.get(UUID.fromString(id)));
     }
 
@@ -58,14 +64,9 @@ public class ComicController {
     public void handleBadFile() {
     }
 
-    private ResponseEntity<ByteArrayResource> toResponse(Comic comic) {
+    private ResponseEntity<ByteArrayResource> toResponse(Content comic) {
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(new ByteArrayResource(comic.getBytes()));
-    }
-
-    private Comic toComic(MultipartFile file) throws IOException {
-        return new Comic(file.getResource().getFilename(), file.getBytes());
-
     }
 }

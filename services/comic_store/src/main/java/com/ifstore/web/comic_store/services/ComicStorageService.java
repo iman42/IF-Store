@@ -1,35 +1,49 @@
 package com.ifstore.web.comic_store.services;
 
-import java.io.IOException;
 import java.util.Set;
 import java.util.UUID;
 
+import com.ifstore.web.comic_store.Content;
+import com.ifstore.web.comic_store.Metadata;
 import com.ifstore.web.comic_store.controllers.ComicStorageServiceInterface;
-import com.ifstore.web.comic_store.Comic;
-import com.ifstore.web.comic_store.ComicReference;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Service
-public class ComicStorageService implements ComicStorageServiceInterface{
+public class ComicStorageService implements ComicStorageServiceInterface {
     @Autowired
-    private ComicReferenceRepositoryInterface referenceRepository;
+    private MetadataRepositoryInterface metadataRepository;
     @Autowired
-    private ComicRepositoryInterface comicRepository;
+    private ContentRepositoryInterface contentRepository;
 
-    public ComicReference storeComic(Comic comic) throws IOException {
-        ComicReference ref = referenceRepository.createAndSaveReference(comic);
-        comicRepository.save(comic, ref);
-        return ref;
+    public void save(Content comic, Metadata metadata) throws UnableToSave {
+        try {
+            metadataRepository.save(metadata);
+            contentRepository.save(comic, metadata);
+        } catch (Exception e) {
+            throw new UnableToSave(e);
+        }
     }
 
-    public Comic get(UUID id) throws IOException {
-        var ref = referenceRepository.get(id);
-        return comicRepository.get(ref);
+    public Content get(UUID id) throws UnableToGet {
+        try {
+            var metadata = metadataRepository.get(id);
+            return contentRepository.get(metadata);
+        } catch (Exception e) {
+            throw new UnableToGet(e);
+        }
     }
 
-    public Set<ComicReference> getAll() {
-        return referenceRepository.getAll();
+    public Set<Metadata> getAll() throws UnableToGet {
+        try {
+
+            return metadataRepository.getAll();
+        } catch (Exception e) {
+            throw new UnableToGet(e);
+        }
     }
 }

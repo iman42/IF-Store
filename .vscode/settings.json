@@ -20,4 +20,11 @@
     "[typescriptreact]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
     },
+    "cSpell.words": [
+        "Mockito"
+    ],
+    "java.completion.guessMethodArguments": true,
+    "java.maven.downloadSources": true,
+    "java.saveActions.organizeImports": true,
+    "java.signatureHelp.enabled": true,
 }

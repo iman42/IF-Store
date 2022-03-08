@@ -1,19 +1,29 @@
 package com.ifstore.web.comic_store.controllers;
 
-import java.io.IOException;
 import java.util.Set;
 import java.util.UUID;
 
-import com.ifstore.web.comic_store.Comic;
-import com.ifstore.web.comic_store.ComicReference;
+import com.ifstore.web.comic_store.Content;
+import com.ifstore.web.comic_store.Metadata;
 
 public interface ComicStorageServiceInterface {
 
-    ComicReference storeComic(Comic comic) throws IOException;
+    void save(Content comic, Metadata byMetadata) throws UnableToSave;
 
-    Set<ComicReference> getAll();
+    Set<Metadata> getAll() throws UnableToGet;
 
-    Comic get(UUID fromString) throws IOException;
+    Content get(UUID fromString) throws UnableToGet;
+
+    public class UnableToGet extends Exception {
+        public UnableToGet(Throwable cause) {
+            super("Unable to get comic.", cause);
+        }
+    }
+
+    public class UnableToSave extends Exception {
+        public UnableToSave(Throwable cause) {
+            super("Unable to save comic.", cause);
+        }
+    }
 
 }
-

@@ -24,6 +24,15 @@ describe("given: comic A and comic B are uploaded", () => {
         });
     });
 
+    test("comic titles should link to comic", async () => {
+        render(<UploadedComics />);
+
+        await waitFor(() => {
+            expect(screen.getByText("ComicA")).toHaveAttribute("href", "/view/ComicA-ID");
+            expect(screen.getByText("ComicB")).toHaveAttribute("href", "/view/ComicB-ID");
+        });
+    });
+
     test("should make the right request", async () => {
         render(<UploadedComics />);
 

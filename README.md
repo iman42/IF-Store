@@ -13,14 +13,15 @@ This repo contains a bunch of services which, together, run the IF Store comic b
 - [Docker Compose](https://docs.docker.com/compose/install/), usually included in "Docker Desktop" for Windows and Mac, otherwise needs to be installed separately.
 - A running docker engine (start the docker desktop program)
 
-## Helpful Commands:
+## How do I...?
 
-A script will help you run or test the project.
-To learn how to use the script, from the root directory of this repo, run:
+From the root directory of this repo, run:
 
 ```bash
 ./run
 ```
+
+This will allow you to run, test, or build the project.
 
 ## To configure editor:
 
