@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { getAllTitles } from "../adapters/ComicStoreAPIInterface";
 
@@ -11,7 +12,11 @@ export function UploadedComics(): JSX.Element {
                 setComics(
                     json.map(
                         (element: { id: string; title: string; }) => (
-                            <li key={element.id}>{element.title}</li>
+                            <li key={element.id}>
+                                <Link href={"/view/" + element.id}>
+                                    {element.title}
+                                </Link>
+                            </li>
                         )
                     )
                 );
