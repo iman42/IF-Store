@@ -11,7 +11,17 @@ const getFakeFile = (content: string, type: string, name: string): File => {
     return blob as File;
 };
 
+test("can't upload if not PDF", () => {
+    window.alert = jest.fn();
+    render(<UploadButton />);
+    const form = screen.getByLabelText("Upload Comic");
 
+    fireEvent.change(form, {
+        target: { files: [getFakeFile("content", "text/html", "abcde.txt")] },
+    });
+    expect(fetchMock.mock.calls).toEqual([]);
+
+});
 test("should show file upload button", () => {
     render(<UploadButton />);
     expect(screen.queryByLabelText("Upload Comic")).toBeVisible();
@@ -28,16 +38,7 @@ test("should upload comic", () => {
     expect(fetchMock.mock.calls[0][0]).toEqual("HTTP://localhost:8080/comics");
     expect(fetchMock.mock.calls[0][1]?.method).toEqual("POST");
     expect(fetchMock.mock.calls[0][1]?.body?.toString()).toEqual("[object FormData]");
+    console.log(fetchMock.mock.calls);
 });
 
 
-test("can't upload if not PDF", () => {
-    window.alert = jest.fn();
-    render(<UploadButton />);
-    const form = screen.getByLabelText("Upload Comic");
-
-    fireEvent.change(form, {
-        target: { files: [getFakeFile("content", "text/html", "abcde.txt")] },
-    });
-    expect(fetchMock.mock.calls).toEqual([]);
-});
