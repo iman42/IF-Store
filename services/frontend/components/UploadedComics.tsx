@@ -12,6 +12,7 @@ export function UploadedComics(): JSX.Element {
                 setComics(
                     json.map(
                         (element: { id: string; title: string; }) => (
+
                             <li key={element.id}>
                                 <Link href={"/view/" + element.id}>
                                     {element.title}
