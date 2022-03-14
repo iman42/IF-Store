@@ -7,5 +7,6 @@ test("Should show Title", async () => {
     });
 
     render();
-    expect(screen.queryByText("banana")).toBeVisible();
+    expect(screen.queryByLabelText("comic-viewer")).toBeVisible();
+    expect(screen.queryByLabelText("comic-viewer")).toHaveAttribute("data", "http://localhost:8080/comics/banana");
 });

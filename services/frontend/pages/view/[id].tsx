@@ -7,7 +7,7 @@ export default function View() {
 
     return (
         <div>
-            {id}
+            <object aria-label="comic-viewer" data={`http://localhost:8080/comics/${id}`} type="application/pdf" height="1200px" width="1200px" />
         </div>
     );
 }
