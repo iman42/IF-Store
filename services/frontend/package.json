@@ -15,6 +15,7 @@
     "react-dom": "*"
   },
   "devDependencies": {
+    "next-page-tester": "*",
     "@testing-library/dom": "*",
     "@testing-library/jest-dom": "*",
     "@testing-library/react": "*",
