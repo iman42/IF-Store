@@ -1,6 +1,6 @@
 import Button from "@material-ui/core/Button";
 import React from "react";
-import { ComicStore as ComicStoreAdapter } from "../adapters/ComicStore";
+import { comicStoreAdapter } from "../services/ComicStoreProvider";
 import styles from "./UploadButton.module.css";
 
 const UploadButton = (): JSX.Element => {
@@ -12,7 +12,7 @@ const UploadButton = (): JSX.Element => {
             const formData = new FormData();
             formData.append("file", files[0]);
             if (sFileExtension === "pdf")
-                new ComicStoreAdapter("http://localhost:8080").uploadComic(formData);
+                comicStoreAdapter.uploadComic(formData);
             else
                 window.alert("THATS NO PDF!");
         }
