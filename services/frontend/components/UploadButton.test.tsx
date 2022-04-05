@@ -41,4 +41,15 @@ test("should upload comic", () => {
     console.log(fetchMock.mock.calls);
 });
 
+test("after uplaoding, should refresh page", () => {
+    render(<UploadButton />);
+    const form = screen.getByLabelText("Upload Comic");
+
+    fireEvent.change(form, {
+        target: { files: [getFakeFile("content", "text/html", "abcde.pdf")] },
+    });
+
+    expect(window.location.reload).toHaveBeenCalled();
+});
+
 

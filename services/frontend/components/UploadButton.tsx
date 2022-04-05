@@ -11,8 +11,10 @@ const UploadButton = (): JSX.Element => {
             const sFileExtension = files[0].name.split(".")[files[0].name.split(".").length - 1].toLowerCase();
             const formData = new FormData();
             formData.append("file", files[0]);
-            if (sFileExtension === "pdf")
+            if (sFileExtension === "pdf") {
                 comicStoreAdapter.uploadComic(formData);
+                window.location.reload();
+            }
             else
                 window.alert("THATS NO PDF!");
         }
