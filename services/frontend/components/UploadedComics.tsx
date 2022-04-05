@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { getAllTitles } from "../adapters/ComicStoreAPIInterface";
+import { getAllTitles } from "../adapters/ComicStore";
 
 export function UploadedComics(): JSX.Element {
 
