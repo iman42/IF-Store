@@ -7,7 +7,7 @@ export function UploadedComics(): JSX.Element {
     const [comics, setComics] = useState([<li key="loading">Loading...</li>]);
 
     useEffect(() => {
-        new ComicStore().getAllTitles().then(results => {
+        new ComicStore("http://localhost:8080").getAllTitles().then(results => {
             setComics(
                 results.map(
                     (element) => (
