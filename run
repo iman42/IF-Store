@@ -15,7 +15,7 @@ if [ $# -eq 0 ] || [ ${1} = '-h' ] || [ ${1} = '--help' ]
     echo ""
     echo "dev - runs services in dev mode"
     echo "        the frontend can be hit from http://localhost:3000"
-    exit 1
+    exit 0
 fi
 
 if [ $# -eq 1 ]
@@ -28,32 +28,35 @@ date=$(date -u +%F)
 export TAG=${date}.${commit_hash}
 
 if [ "$type" = "build" ] || [ "$type" = "check" ]
-    then
-        docker_compose_files=(docker-compose/docker-compose.*.prod.yml)
-        as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
+then
+    docker_compose_files=(docker-compose/docker-compose.*.prod.yml)
+    as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
-        docker-compose $as_arguments build --pull
-fi
-if [ "$type" = "test" ] || [ "$type" = "dev" ] || [ "$type" = "check" ]
-    then
-        docker_compose_files=(docker-compose/docker-compose.*.${type}.yml)
-        if [ "$type" = "check" ]
-            then
-                docker_compose_files=(docker-compose/docker-compose.*.test.yml)
-        fi
-        as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
+    docker-compose $as_arguments build --pull
+elif [ "$type" = "test" ] || [ "$type" = "dev" ] || [ "$type" = "check" ]
+then
+    docker_compose_files=(docker-compose/docker-compose.*.${type}.yml)
+    if [ "$type" = "check" ]
+        then
+            docker_compose_files=(docker-compose/docker-compose.*.test.yml)
+    fi
+    as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
-        exec 5>&1
-        output=$(docker-compose $as_arguments up --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes --build | tee >(cat - >&5))
+    exec 5>&1
+    output=$(docker-compose $as_arguments up --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes --build | tee >(cat - >&5))
 
-        failed_services=$(echo "${output}" | grep "exited with code" | grep -v "exited with code 0")
-        failed_services_count=$(echo "${failed_services}" | grep . | wc -l)
+    failed_services=$(echo "${output}" | grep "exited with code" | grep -v "exited with code 0")
+    failed_services_count=$(echo "${failed_services}" | grep . | wc -l)
 
-        if [ $failed_services_count -ne 0 ]; then
-            printf "${failed_services}"
-            echo ""
-            echo ""
-            echo "Tests failed."
-            exit 1
-        fi
+    if [ $failed_services_count -ne 0 ]; then
+        printf "${failed_services}"
+        echo ""
+        echo ""
+        echo "Tests failed."
+        exit 1
+    fi
+else
+    echo "Bad argument. Try:"
+    echo "./run --help"
+    exit 1
 fi
