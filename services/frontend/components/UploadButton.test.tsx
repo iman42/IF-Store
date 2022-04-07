@@ -38,7 +38,6 @@ test("should upload comic", () => {
     expect(fetchMock.mock.calls[0][0]).toEqual("http://localhost:8080/comics");
     expect(fetchMock.mock.calls[0][1]?.method).toEqual("POST");
     expect(fetchMock.mock.calls[0][1]?.body?.toString()).toEqual("[object FormData]");
-    console.log(fetchMock.mock.calls);
 });
 
 test("after uplaoding, should refresh page", () => {

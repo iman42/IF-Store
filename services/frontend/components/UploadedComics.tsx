@@ -1,23 +1,16 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { ComicMetadata } from "services/ports/ComicStore";
 import { comicStoreAdapter } from "../services/ComicStoreProvider";
 
 export function UploadedComics(): JSX.Element {
 
-    const [comics, setComics] = useState([<li key="loading">Loading...</li>]);
+    const [comicUiElements, setComicUiElements] = useState([<li key="loading">Loading...</li>]);
 
     useEffect(() => {
-        comicStoreAdapter.getAllTitles().then(results => {
-            setComics(
-                results.map(
-                    (element) => (
-                        <li key={element.id}>
-                            <Link href={"/view/" + element.id}>
-                                {element.title}
-                            </Link>
-                        </li>
-                    )
-                )
+        comicStoreAdapter.getAllTitles().then(metadataResults => {
+            setComicUiElements(
+                metadataResults.map(toUi)
             );
         });
     }, []);
@@ -25,7 +18,14 @@ export function UploadedComics(): JSX.Element {
     return (
         <div>
             <h3>Uploaded Comics:</h3>
-            <ul>{comics}</ul>
+            <ul>{comicUiElements}</ul>
         </div>
     );
+}
+function toUi(metadata: ComicMetadata): JSX.Element {
+    return <li key={metadata.id}>
+        <Link href={"/view/" + metadata.id}>
+            {metadata.title}
+        </Link>
+    </li>;
 }
