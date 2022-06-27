@@ -26,13 +26,13 @@ test("comic buttons appear", async () => {
     await renderPage();
     expect(screen.queryByText("Uploaded Comics:")).toBeVisible();
 });
+
 test("Login button exists", async () => {
     await renderPage();
     expect(screen.queryByText("Login")).toBeVisible();
     expect(screen.queryByText("Signup")).toBeVisible();
-}
+});
 
-);
 async function renderPage() {
     render(<Home />);
 
