@@ -2,7 +2,7 @@ autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll
 
 function! RunFrontendTestFile() abort
     let path = expand('%:p')
-    execute "terminal source ~/.zshrc && cd services/frontend && nvm install && node_modules/.bin/jest " . path
+    execute "terminal source ~/.zshrc && cd services/frontend && nvm install && node_modules/.bin/jest --watch " . path
     execute "f TEST - ".path
 endfunction
 
