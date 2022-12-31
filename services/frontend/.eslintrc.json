@@ -21,6 +21,8 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "react/jsx-uses-react": 0,
+        "react/react-in-jsx-scope": 0,
         "indent": [
             "error",
             4

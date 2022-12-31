@@ -31,7 +31,6 @@ const Collapsible: React.FC<IProps> = ({
     };
     useEffect(() => {
         if (!height || !isOpen || !ref.current) return undefined;
-        // @ts-ignore
         const resizeObserver = new ResizeObserver((el) => {
             setHeight(el[0].contentRect.height);
         });
