@@ -1,12 +1,25 @@
-import React from "react";
 import Collapsible from "./Collapsible";
 import styles from "./SignInButtons.module.css";
 export function SignInButtons() {
 
     return <div className={styles.something}>
         <div>
-            <Collapsible open header="Login">
-                Email
+            <Collapsible header="Login">
+                <div className="form">
+                    <form>
+                        <div className="input-container">
+                            <label>Username </label>
+                            <input type="text" name="uname" required />
+                        </div>
+                        <div className="input-container">
+                            <label>Password </label>
+                            <input type="password" name="pass" required />
+                        </div>
+                        <div className="button-container">
+                            <input type="submit" />
+                        </div>
+                    </form>
+                </div>
             </Collapsible>
         </div>
         <div>
@@ -14,4 +27,3 @@ export function SignInButtons() {
         </div>
     </div>;
 }
-
