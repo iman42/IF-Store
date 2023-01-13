@@ -9,7 +9,10 @@
     "test": "jest"
   },
   "dependencies": {
-    "@material-ui/core": "*",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.4",
+    "@mui/styles": "^5.11.2",
     "next": "*",
     "react": "*",
     "react-dom": "*"
@@ -20,7 +23,7 @@
     "@testing-library/react": "*",
     "@types/jest": "*",
     "@types/node": "*",
-    "@types/react": "^17.0.52",
+    "@types/react": "*",
     "@typescript-eslint/eslint-plugin": "*",
     "@typescript-eslint/parser": "*",
     "babel-jest": "*",
@@ -28,7 +31,6 @@
     "eslint-plugin-react": "*",
     "jest": "*",
     "jest-fetch-mock": "*",
-    "next-page-tester": "*",
     "typescript": "*"
   }
 }

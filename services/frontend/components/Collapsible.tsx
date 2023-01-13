@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { ReactNode, useEffect, useRef, useState } from "react";
 interface IProps {
     open?: boolean;
     header: string | React.ReactNode;
@@ -8,6 +8,7 @@ interface IProps {
     contentClassName?: string;
     contentContainerClassName?: string;
     collapsibleClassName?: string;
+    children?: ReactNode;
 }
 
 const Collapsible: React.FC<IProps> = ({
