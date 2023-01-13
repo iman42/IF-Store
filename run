@@ -32,7 +32,16 @@ if [ "$type" = "build" ] || [ "$type" = "check" ]
         docker_compose_files=(docker-compose/docker-compose.*.prod.yml)
         as_arguments=$(printf " -f %s" "${docker_compose_files[@]}")
 
-        docker-compose $as_arguments build --pull
+        exec 5>&1
+        output=$(docker-compose $as_arguments build --pull | tee >(cat - >&5))
+
+        failed=$(echo "${output}" | grep "failed to build")
+        if [ "${failed}" ]; then
+            echo ""
+            echo ""
+            echo "Build failed."
+            exit 1
+        fi
 fi
 if [ "$type" = "test" ] || [ "$type" = "dev" ] || [ "$type" = "check" ]
     then
