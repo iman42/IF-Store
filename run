@@ -36,7 +36,8 @@ if [ "$type" = "build" ] || [ "$type" = "check" ]
         output=$(docker-compose $as_arguments build --pull | tee >(cat - >&5))
 
         failed=$(echo "${output}" | grep "failed to build")
-        if [ "${failed}" ]; then
+        failed_count=$(echo "${failed}" | grep . | wc -l)
+        if [ $failed_count -ne 0 ]; then
             echo ""
             echo ""
             echo "Build failed."
