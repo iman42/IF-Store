@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import "@testing-library/jest-dom";
 
 require("jest-fetch-mock").enableMocks();
 
