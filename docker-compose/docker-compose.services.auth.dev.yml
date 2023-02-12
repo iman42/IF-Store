@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  auth-dev:
+    build:
+      context: ../services/auth
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ../services/auth:/usr/src/myapp
