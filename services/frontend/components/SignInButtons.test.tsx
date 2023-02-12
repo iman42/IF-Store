@@ -4,5 +4,5 @@ test("page contains login button and email field", () => {
     render(<SignInButtons />);
 
     expect(screen.queryByText("Login")).toBeVisible();
-    expect(screen.queryByText("Email")).toBeVisible();
+    expect(screen.queryByText("Username")).toBeVisible();
 });
