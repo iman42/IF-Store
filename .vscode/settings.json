@@ -27,4 +27,8 @@
     "java.maven.downloadSources": true,
     "java.saveActions.organizeImports": true,
     "java.signatureHelp.enabled": true,
+    "rust-analyzer.linkedProjects": [
+        "services/auth/Cargo.toml"
+    ],
+    "rust-analyzer.restartServerOnConfigChange": true,
 }

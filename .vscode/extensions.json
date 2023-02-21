@@ -15,7 +15,7 @@
         "vscjava.vscode-maven", // to run maven tasks
         "vscjava.vscode-java-test", // to run tests
         "vscjava.vscode-java-debug", // to debug
-        "gabrielbb.vscode-lombok", // support for lombok
+        "vscjava.vscode-lombok", // support for lombok
     ],
     "unwantedRecommendations": [ ]
 }

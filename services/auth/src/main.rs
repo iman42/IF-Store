@@ -6,7 +6,7 @@ fn main() {
 mod tests {
 
     #[test]
-    fn testing_stuff(){
+    fn testing_stuff() {
         assert_eq!(1, 1);
     }
 }
